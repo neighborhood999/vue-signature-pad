@@ -3,10 +3,29 @@
   "version": "0.0.1",
   "description": "Vue Signature Pad Component",
   "author": "Peng Jie <bivinity.pengzjie@gmail.com>",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint --ext .vue,.js src",
+    "lint-fix": "eslint --ext .vue,.js src --fix",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "dependencies": {
     "signature_pad": "^2.3.2",
     "vue": "^2.5.13"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.5.0",
+    "eslint-plugin-vue": "^4.2.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2"
+  }
 }
