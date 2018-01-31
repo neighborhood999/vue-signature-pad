@@ -12,7 +12,7 @@ import SignaturePad from 'signature_pad';
 import { checkSaveType, undo } from '../utils';
 
 export default {
-  name: 'vue-signature-pad',
+  name: 'VueSignaturePad',
   props: {
     width: {
       type: String,
@@ -40,7 +40,7 @@ export default {
     }
   },
   data: () => ({
-    signaturePad: {},
+    signaturePad: {}
   }),
   mounted() {
     const canvas = this.$refs.signaturePadCanvas;
@@ -51,7 +51,7 @@ export default {
       'resize',
       this.resizeCanvas.bind(this, canvas),
       false
-    )
+    );
 
     this.resizeCanvas(canvas);
   },
