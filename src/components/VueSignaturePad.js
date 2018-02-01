@@ -34,8 +34,8 @@ export default {
   }),
   mounted() {
     const canvas = this.$refs.signaturePadCanvas;
-    const signature = new SignaturePad(canvas, this.options);
-    this.signaturePad = signature;
+    const signaturePad = new SignaturePad(canvas, this.options);
+    this.signaturePad = signaturePad;
 
     window.addEventListener(
       'resize',
