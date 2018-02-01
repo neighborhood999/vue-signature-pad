@@ -82,11 +82,8 @@ export default {
       [
         createElement('canvas', {
           style: {
-            left: 0,
-            top: 0,
             width: '100%',
-            height: '100%',
-            'background-color': 'white'
+            height: '100%'
           },
           ref: 'signaturePadCanvas'
         })
