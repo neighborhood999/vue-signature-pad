@@ -1,6 +1,6 @@
 {
   "name": "vue-signature-pad",
-  "description": "Vue Signature Pad Component",
+  "description": "SignaturePad component for Vue.js",
   "version": "0.0.1",
   "main": "dist/vue-signature-pad.common.js",
   "unpkg": "dist/vue-signature-pad.js",
@@ -9,14 +9,15 @@
     "dist"
   ],
   "scripts": {
-    "build:dev": "cross-env NODE_ENV=development rollup -c",
-    "build:prod": "cross-env NODE_ENV=production rollup -c",
+    "build:dev": "npm run clean && cross-env NODE_ENV=development rollup -c",
+    "build:prod": "npm run clean && cross-env NODE_ENV=production rollup -c",
     "lint": "eslint --ext .vue,.js src",
     "lint-fix": "eslint --ext .vue,.js src --fix",
-    "size":"run-s size:*",
+    "size": "run-s size:*",
     "size:cjs": "echo CommonJs gzipped size: $(gzip-size $npm_package_main)",
     "size:unpkg": "echo UMD gzipped size: $(gzip-size $npm_package_unpkg)",
     "size:esm": "echo ESModule gzipped size: $(gzip-size $npm_package_module)",
+    "clean": "rimraf dist",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -53,6 +54,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.1.0",
     "prettier": "^1.10.2",
+    "rimraf": "^2.6.2",
     "rollup": "^0.55.1",
     "rollup-plugin-buble": "^0.18.0",
     "rollup-plugin-commonjs": "^8.3.0",
@@ -60,5 +62,6 @@
     "rollup-plugin-node-resolve": "^3.0.2",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-uglify": "^3.0.0"
-  }
+  },
+  "license": "MIT"
 }

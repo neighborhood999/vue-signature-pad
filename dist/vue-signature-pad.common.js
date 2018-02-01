@@ -101,11 +101,8 @@ var VueSignaturePad = {
       [
         createElement('canvas', {
           style: {
-            left: 0,
-            top: 0,
             width: '100%',
-            height: '100%',
-            'background-color': 'white'
+            height: '100%'
           },
           ref: 'signaturePadCanvas'
         })
@@ -114,7 +111,7 @@ var VueSignaturePad = {
   }
 };
 
-VueSignaturePad.install = function (Vue) { return Vue.component(VueSignaturePad.name, Trend); };
+VueSignaturePad.install = function (Vue) { return Vue.component(VueSignaturePad.name, VueSignaturePad); };
 
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VueSignaturePad);
