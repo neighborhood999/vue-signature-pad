@@ -1,5 +1,5 @@
 import SignaturePad from 'signature_pad';
-import { checkSaveType, undo } from '../utils/index';
+import { DEFAULT_OPTIONS, checkSaveType, undo } from '../utils/index';
 
 export default {
   name: 'VueSignaturePad',
@@ -18,23 +18,19 @@ export default {
     },
     options: {
       type: Object,
-      default: () => ({
-        minWidth: 0.5,
-        maxWidth: 2.5,
-        throttle: 16,
-        minDistance: 5,
-        backgroundColor: 'rgba(0,0,0,0)',
-        penColor: 'black',
-        velocityFilterWeight: 0.7
-      })
+      default: () => ({})
     }
   },
   data: () => ({
     signaturePad: {}
   }),
   mounted() {
+    const { options } = this;
     const canvas = this.$refs.signaturePadCanvas;
-    const signaturePad = new SignaturePad(canvas, this.options);
+    const signaturePad = new SignaturePad(canvas, {
+      ...DEFAULT_OPTIONS,
+      ...options
+    });
     this.signaturePad = signaturePad;
 
     window.addEventListener(
