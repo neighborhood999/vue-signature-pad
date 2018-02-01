@@ -1,15 +1,5 @@
-<template>
-  <div :style="{width, height}">
-    <canvas
-      class="signature-pad"
-      ref="signaturePadCanvas"
-    />
-  </div>
-</template>
-
-<script>
 import SignaturePad from 'signature_pad';
-import { checkSaveType, undo } from '../utils';
+import { checkSaveType, undo } from '../utils/index';
 
 export default {
   name: 'VueSignaturePad',
@@ -61,6 +51,7 @@ export default {
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
+      this.signaturePad.clear();
     },
     saveSignature() {
       if (this.signaturePad.isEmpty()) return;
@@ -76,15 +67,30 @@ export default {
     undoSignature() {
       undo(this.signaturePad);
     }
+  },
+  render(createElement) {
+    const { width, height } = this;
+
+    return createElement(
+      'div',
+      {
+        style: {
+          width,
+          height
+        }
+      },
+      [
+        createElement('canvas', {
+          style: {
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+            'background-color': 'white'
+          },
+          ref: 'signaturePadCanvas'
+        })
+      ]
+    );
   }
 };
-</script>
-<style scoped>
-.signature-pad {
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-}
-</style>
