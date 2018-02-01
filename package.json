@@ -18,7 +18,8 @@
     "size:unpkg": "echo UMD gzipped size: $(gzip-size $npm_package_unpkg)",
     "size:esm": "echo ESModule gzipped size: $(gzip-size $npm_package_module)",
     "clean": "rimraf dist",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepublish": "npm run lint && npm run build:prod"
   },
   "lint-staged": {
     "*.{js,vue}": [
