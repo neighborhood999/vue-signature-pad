@@ -18,23 +18,28 @@ export default {
     },
     options: {
       type: Object,
-      default: () => ({
-        minWidth: 0.5,
-        maxWidth: 2.5,
-        throttle: 16,
-        minDistance: 5,
-        backgroundColor: 'rgba(0,0,0,0)',
-        penColor: 'black',
-        velocityFilterWeight: 0.7
-      })
+      default: () => ({})
     }
   },
   data: () => ({
+    defaultOptions: {
+      minWidth: 0.5,
+      maxWidth: 2.5,
+      throttle: 16,
+      minDistance: 5,
+      backgroundColor: 'rgba(0,0,0,0)',
+      penColor: 'black',
+      velocityFilterWeight: 0.7
+    },
     signaturePad: {}
   }),
   mounted() {
+    const { defaultOptions, options } = this;
     const canvas = this.$refs.signaturePadCanvas;
-    const signaturePad = new SignaturePad(canvas, this.options);
+    const signaturePad = new SignaturePad(canvas, {
+      ...defaultOptions,
+      ...options
+    });
     this.signaturePad = signaturePad;
 
     window.addEventListener(
