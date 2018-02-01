@@ -61,6 +61,7 @@ export default {
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
+      this.signaturePad.clear();
     },
     saveSignature() {
       if (this.signaturePad.isEmpty()) return;
