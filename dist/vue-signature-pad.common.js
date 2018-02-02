@@ -6,6 +6,16 @@ var SignaturePad = _interopDefault(require('signature_pad'));
 
 var SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
+var DEFAULT_OPTIONS = {
+  minWidth: 0.5,
+  maxWidth: 2.5,
+  throttle: 16,
+  minDistance: 5,
+  backgroundColor: 'rgba(0,0,0,0)',
+  penColor: 'black',
+  velocityFilterWeight: 0.7
+};
+
 var checkSaveType = function (type) { return SAVE_TYPE.includes(type); };
 
 var undo = function (data) {
@@ -35,23 +45,18 @@ var VueSignaturePad = {
     },
     options: {
       type: Object,
-      default: function () { return ({
-        minWidth: 0.5,
-        maxWidth: 2.5,
-        throttle: 16,
-        minDistance: 5,
-        backgroundColor: 'rgba(0,0,0,0)',
-        penColor: 'black',
-        velocityFilterWeight: 0.7
-      }); }
+      default: function () { return ({}); }
     }
   },
   data: function () { return ({
     signaturePad: {}
   }); },
   mounted: function mounted() {
+    var ref = this;
+    var options = ref.options;
     var canvas = this.$refs.signaturePadCanvas;
-    var signaturePad = new SignaturePad(canvas, this.options);
+    var signaturePad = new SignaturePad(canvas, Object.assign({}, DEFAULT_OPTIONS,
+      options));
     this.signaturePad = signaturePad;
 
     window.addEventListener(

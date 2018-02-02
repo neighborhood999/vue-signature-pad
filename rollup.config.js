@@ -12,7 +12,9 @@ const config = {
   input: 'src/index.js',
   external: ['signature_pad'],
   plugins: [
-    buble(),
+    buble({
+      objectAssign: 'Object.assign'
+    }),
     nodeResolve({
       jsnext: true,
       main: true,
