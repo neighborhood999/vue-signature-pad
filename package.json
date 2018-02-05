@@ -5,9 +5,7 @@
   "main": "dist/vue-signature-pad.common.js",
   "unpkg": "dist/vue-signature-pad.js",
   "module": "dist/vue-signature-pad.esm.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build:dev": "npm run clean && cross-env NODE_ENV=development rollup -c",
     "build:prod": "npm run clean && cross-env NODE_ENV=production rollup -c",
@@ -22,25 +20,20 @@
     "prepublish": "npm run lint && npm run build:prod"
   },
   "lint-staged": {
-    "*.{js,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "*.{js,vue}": ["eslint --fix", "git add"]
   },
-  "author": "Peng Jie <bivinity.pengzjie@gmail.com> (https://github.com/neighborhood999)",
+  "author":
+    "Peng Jie <bivinity.pengzjie@gmail.com> (https://github.com/neighborhood999)",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/neighborhood999/vue-signature-pad.git"
   },
-  "keywords": [
-    "vue",
-    "signature",
-    "component"
-  ],
+  "keywords": ["vue", "signature", "component"],
   "bugs": {
     "url": "https://github.com/neighborhood999/vue-signature-pad/issues"
   },
   "dependencies": {
+    "merge-images": "^1.0.7",
     "signature_pad": "^2.3.2",
     "vue": "^2.5.13"
   },

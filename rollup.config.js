@@ -5,12 +5,15 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
-const GLOBALS = { signature_pad: 'SignaturePad' };
+const GLOBALS = {
+  signature_pad: 'SignaturePad',
+  'merge-images': 'mergeImages'
+};
 const isProduction = process.env.NODE_ENV === 'production';
 
 const config = {
   input: 'src/index.js',
-  external: ['signature_pad'],
+  external: ['signature_pad', 'merge-images'],
   plugins: [
     buble({
       objectAssign: 'Object.assign'
