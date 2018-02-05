@@ -1,4 +1,5 @@
 import SignaturePad from 'signature_pad';
+import mergeImages from 'merge-images';
 
 var SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
@@ -13,16 +14,6 @@ var DEFAULT_OPTIONS = {
 };
 
 var checkSaveType = function (type) { return SAVE_TYPE.includes(type); };
-
-var undo = function (data) {
-  var record = data.toData();
-
-  if (record) {
-    return data.fromData(record.slice(0, -1));
-  }
-
-  return;
-};
 
 var VueSignaturePad = {
   name: 'VueSignaturePad',
@@ -42,6 +33,10 @@ var VueSignaturePad = {
     options: {
       type: Object,
       default: function () { return ({}); }
+    },
+    images: {
+      type: Array,
+      default: function () { return []; }
     }
   },
   data: function () { return ({
@@ -72,18 +67,31 @@ var VueSignaturePad = {
       this.signaturePad.clear();
     },
     saveSignature: function saveSignature() {
-      if (this.signaturePad.isEmpty()) { return; }
+      var ref = this;
+      var signaturePad = ref.signaturePad;
+      var saveType = ref.saveType;
 
-      if (!checkSaveType(this.saveType)) {
+      if (signaturePad.isEmpty()) { return; }
+
+      if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');
       }
 
-      var data = this.signaturePad.toDataURL(this.saveType);
-
-      return data;
+      return signaturePad.toDataURL(saveType);
     },
     undoSignature: function undoSignature() {
-      undo(this.signaturePad);
+      var ref = this;
+      var signaturePad = ref.signaturePad;
+      var record = signaturePad.toData();
+
+      if (record) {
+        return signaturePad.fromData(record.slice(0, -1));
+      }
+
+      return;
+    },
+    mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
+      return mergeImages(this.images.concat( [customSignature]));
     }
   },
   render: function render(createElement) {

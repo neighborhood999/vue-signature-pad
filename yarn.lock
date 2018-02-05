@@ -1212,6 +1212,10 @@ meow@^3.7.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
+merge-images@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/merge-images/-/merge-images-1.0.7.tgz#f091466263f878d16d06c03cebc37ea97e9288ca"
+
 micromatch@^2.3.11:
   version "2.3.11"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"

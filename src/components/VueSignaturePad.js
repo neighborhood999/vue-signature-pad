@@ -1,5 +1,6 @@
 import SignaturePad from 'signature_pad';
-import { DEFAULT_OPTIONS, checkSaveType, undo } from '../utils/index';
+import mergeImages from 'merge-images';
+import { DEFAULT_OPTIONS, checkSaveType } from '../utils/index';
 
 export default {
   name: 'VueSignaturePad',
@@ -19,6 +20,10 @@ export default {
     options: {
       type: Object,
       default: () => ({})
+    },
+    images: {
+      type: Array,
+      default: () => []
     }
   },
   data: () => ({
@@ -50,18 +55,28 @@ export default {
       this.signaturePad.clear();
     },
     saveSignature() {
-      if (this.signaturePad.isEmpty()) return;
+      const { signaturePad, saveType } = this;
 
-      if (!checkSaveType(this.saveType)) {
+      if (signaturePad.isEmpty()) return;
+
+      if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');
       }
 
-      const data = this.signaturePad.toDataURL(this.saveType);
-
-      return data;
+      return signaturePad.toDataURL(saveType);
     },
     undoSignature() {
-      undo(this.signaturePad);
+      const { signaturePad } = this;
+      const record = signaturePad.toData();
+
+      if (record) {
+        return signaturePad.fromData(record.slice(0, -1));
+      }
+
+      return;
+    },
+    mergeImageAndSignature(customSignature) {
+      return mergeImages([...this.images, customSignature]);
     }
   },
   render(createElement) {
