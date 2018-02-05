@@ -46,7 +46,7 @@ var VueSignaturePad = {
     }
   },
   data: function () { return ({
-    signaturePad: {}
+    signaturePad: function () { return ({}); }
   }); },
   mounted: function mounted() {
     var ref = this;
