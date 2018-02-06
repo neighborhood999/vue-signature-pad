@@ -76,14 +76,19 @@ var VueSignaturePad = {
       var ref = this;
       var signaturePad = ref.signaturePad;
       var saveType = ref.saveType;
-
-      if (signaturePad.isEmpty()) { return; }
+      var status = { isEmpty: false, data: [] };
 
       if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');
       }
 
-      return signaturePad.toDataURL(saveType);
+      if (signaturePad.isEmpty()) {
+        return Object.assign({}, status,
+          {isEmpty: true});
+      }
+
+      return Object.assign({}, status,
+        {data: signaturePad.toDataURL(saveType)});
     },
     undoSignature: function undoSignature() {
       var ref = this;
