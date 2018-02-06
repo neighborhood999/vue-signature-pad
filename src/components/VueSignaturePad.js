@@ -56,14 +56,23 @@ export default {
     },
     saveSignature() {
       const { signaturePad, saveType } = this;
-
-      if (signaturePad.isEmpty()) return;
+      const status = { isEmpty: false, data: [] };
 
       if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');
       }
 
-      return signaturePad.toDataURL(saveType);
+      if (signaturePad.isEmpty()) {
+        return {
+          ...status,
+          isEmpty: true
+        };
+      }
+
+      return {
+        ...status,
+        data: signaturePad.toDataURL(saveType)
+      };
     },
     undoSignature() {
       const { signaturePad } = this;
