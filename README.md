@@ -1,5 +1,9 @@
 # Vue Signature Pad
 
+[![npm](https://img.shields.io/npm/v/vue-signature-pad.svg?style=flat-square)](https://www.npmjs.com/package/vue-signature-pad)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![](https://img.shields.io/badge/module%20formats-cjs%2C%20esm%2C%20umd-green.svg?style=flat-square)
+
 ## Installation
 
 ```sh

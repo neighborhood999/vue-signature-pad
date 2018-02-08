@@ -56,7 +56,7 @@ export default {
     },
     saveSignature() {
       const { signaturePad, saveType } = this;
-      const status = { isEmpty: false, data: [] };
+      const status = { isEmpty: false, data: undefined };
 
       if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');

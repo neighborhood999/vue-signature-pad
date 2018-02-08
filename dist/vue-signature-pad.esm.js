@@ -70,7 +70,7 @@ var VueSignaturePad = {
       var ref = this;
       var signaturePad = ref.signaturePad;
       var saveType = ref.saveType;
-      var status = { isEmpty: false, data: [] };
+      var status = { isEmpty: false, data: undefined };
 
       if (!checkSaveType(saveType)) {
         throw new Error('Image type is incorrect!');
