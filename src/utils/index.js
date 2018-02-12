@@ -1,5 +1,7 @@
 const SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
+export const checkSaveType = type => SAVE_TYPE.includes(type);
+
 export const DEFAULT_OPTIONS = {
   minWidth: 0.5,
   maxWidth: 2.5,
@@ -9,5 +11,3 @@ export const DEFAULT_OPTIONS = {
   penColor: 'black',
   velocityFilterWeight: 0.7
 };
-
-export const checkSaveType = type => SAVE_TYPE.includes(type);
