@@ -27,7 +27,7 @@ export default {
     }
   },
   data: () => ({
-    signaturePad: () => ({})
+    signaturePad: {}
   }),
   mounted() {
     const { options } = this;
