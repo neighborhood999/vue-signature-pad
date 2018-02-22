@@ -7,6 +7,8 @@ var mergeImages = _interopDefault(require('merge-images'));
 
 var SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
+var checkSaveType = function (type) { return SAVE_TYPE.includes(type); };
+
 var DEFAULT_OPTIONS = {
   minWidth: 0.5,
   maxWidth: 2.5,
@@ -16,8 +18,6 @@ var DEFAULT_OPTIONS = {
   penColor: 'black',
   velocityFilterWeight: 0.7
 };
-
-var checkSaveType = function (type) { return SAVE_TYPE.includes(type); };
 
 var VueSignaturePad = {
   name: 'VueSignaturePad',
@@ -96,8 +96,6 @@ var VueSignaturePad = {
       if (record) {
         return signaturePad.fromData(record.slice(0, -1));
       }
-
-      return;
     },
     mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
       return mergeImages(this.images.concat( [customSignature]));

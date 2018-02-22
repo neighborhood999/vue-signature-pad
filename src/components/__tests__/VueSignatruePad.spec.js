@@ -18,7 +18,7 @@ describe('VueSignaturePad Component', () => {
     expect(wrapper.props().images).toEqual(expectedImages);
   });
 
-  it('should be throw incorrect image error message', () => {
+  it('should it throw incorrect image error message', () => {
     const addOptionsWrapper = shallow(VueSignaturePad, {
       propsData: {
         saveType: 'text/html'
@@ -28,7 +28,7 @@ describe('VueSignaturePad Component', () => {
     expect(() => addOptionsWrapper.vm.saveSignature()).toThrow();
   });
 
-  it('should be return save signaturePad status', () => {
+  it('should it return signaturePad status and data', () => {
     const wrapper = shallow(VueSignaturePad);
 
     wrapper.vm.saveSignature();
@@ -36,7 +36,6 @@ describe('VueSignaturePad Component', () => {
       isEmpty: true,
       data: undefined
     });
-    wrapper.vm.signaturePad._data = signatureMockData;
 
     wrapper.setData({
       signaturePad: {
@@ -54,5 +53,30 @@ describe('VueSignaturePad Component', () => {
       isEmpty: false,
       data: mockEncodeDataURL
     });
+  });
+
+  it('should it undo draw action', () => {
+    const wrapper = shallow(VueSignaturePad);
+
+    wrapper.setData({
+      signaturePad: {
+        ...wrapper.vm.signaturePad,
+        _data: signatureMockData,
+        isEmpty() {
+          return false;
+        },
+        toData() {
+          return signatureMockData;
+        },
+        toDataURL(type, ...options) {
+          return mockEncodeDataURL;
+        },
+        fromData(data) {
+          return data;
+        }
+      }
+    });
+
+    expect(wrapper.vm.undoSignature()).toEqual([]);
   });
 });
