@@ -81,8 +81,6 @@ export default {
       if (record) {
         return signaturePad.fromData(record.slice(0, -1));
       }
-
-      return;
     },
     mergeImageAndSignature(customSignature) {
       return mergeImages([...this.images, customSignature]);
