@@ -5,7 +5,7 @@
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![](https://img.shields.io/badge/module%20formats-cjs%2C%20esm%2C%20umd-green.svg?style=flat-square)
 
-> Vue component wrap for [signature_pad](https://github.com/szimek/signature_pad)
+> Vue component wrap for [signature pad](https://github.com/szimek/signature_pad)
 
 ## Installation
 
@@ -36,19 +36,19 @@ Vue.use(VueSignaturePad);
   </div>
 </template>
 <script>
-export default {
-  name: 'MySignaturePad',
-  methods: {
-    undo() {
-      this.$refs.signaturePad.undoSignature();
-    },
-    save() {
-      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-      console.log(isEmpty);
-      console.log(data);
+  export default {
+    name: 'MySignaturePad',
+    methods: {
+      undo() {
+        this.$refs.signaturePad.undoSignature();
+      },
+      save() {
+        const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+        console.log(isEmpty);
+        console.log(data);
+      }
     }
   }
-}
 </script>
 ```
 
