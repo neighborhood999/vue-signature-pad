@@ -13,6 +13,9 @@ export default {
       type: String,
       default: '100%'
     },
+    customStyle: {
+      type: Object
+    },
     saveType: {
       type: String,
       default: 'image/png'
@@ -87,14 +90,15 @@ export default {
     }
   },
   render(createElement) {
-    const { width, height } = this;
+    const { width, height, customStyle } = this;
 
     return createElement(
       'div',
       {
         style: {
           width,
-          height
+          height,
+          ...customStyle
         }
       },
       [
