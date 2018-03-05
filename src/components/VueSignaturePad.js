@@ -87,6 +87,12 @@ export default {
     },
     mergeImageAndSignature(customSignature) {
       return mergeImages([...this.images, customSignature]);
+    },
+    lockSignaturePad() {
+      return this.signaturePad.off();
+    },
+    openSigaturePad() {
+      return this.signaturePad.on();
     }
   },
   render(createElement) {

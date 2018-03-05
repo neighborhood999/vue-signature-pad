@@ -30,6 +30,9 @@ var VueSignaturePad = {
       type: String,
       default: '100%'
     },
+    customStyle: {
+      type: Object
+    },
     saveType: {
       type: String,
       default: 'image/png'
@@ -99,20 +102,26 @@ var VueSignaturePad = {
     },
     mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
       return mergeImages(this.images.concat( [customSignature]));
+    },
+    lockSignaturePad: function lockSignaturePad() {
+      return this.signaturePad.off();
+    },
+    openSigaturePad: function openSigaturePad() {
+      return this.signaturePad.on();
     }
   },
   render: function render(createElement) {
     var ref = this;
     var width = ref.width;
     var height = ref.height;
+    var customStyle = ref.customStyle;
 
     return createElement(
       'div',
       {
-        style: {
-          width: width,
-          height: height
-        }
+        style: Object.assign({}, {width: width,
+          height: height},
+          customStyle)
       },
       [
         createElement('canvas', {
