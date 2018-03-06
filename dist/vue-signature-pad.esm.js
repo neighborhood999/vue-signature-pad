@@ -100,7 +100,7 @@ var VueSignaturePad = {
     mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
       this.cacheImages = this.cacheImages.concat( [customSignature]);
 
-      return mergeImages(this.images.concat( [customSignature]));
+      return mergeImages(this.images.concat( this.cacheImages));
     },
     lockSignaturePad: function lockSignaturePad() {
       return this.signaturePad.off();

@@ -89,7 +89,7 @@ export default {
     mergeImageAndSignature(customSignature) {
       this.cacheImages = [...this.cacheImages, customSignature];
 
-      return mergeImages([...this.images, customSignature]);
+      return mergeImages([...this.images, ...this.cacheImages]);
     },
     lockSignaturePad() {
       return this.signaturePad.off();
