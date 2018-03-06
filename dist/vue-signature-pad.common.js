@@ -109,10 +109,10 @@ var VueSignaturePad = {
     lockSignaturePad: function lockSignaturePad() {
       return this.signaturePad.off();
     },
-    openSigaturePad: function openSigaturePad() {
+    openSignaturePad: function openSignaturePad() {
       return this.signaturePad.on();
     },
-    getPropsImagesWithCachImages: function getPropsImagesWithCachImages() {
+    getPropsImagesWithCacheImages: function getPropsImagesWithCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages: function clearCacheImages() {

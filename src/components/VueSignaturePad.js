@@ -94,10 +94,10 @@ export default {
     lockSignaturePad() {
       return this.signaturePad.off();
     },
-    openSigaturePad() {
+    openSignaturePad() {
       return this.signaturePad.on();
     },
-    getPropsImagesWithCachImages() {
+    getPropsImagesWithCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages() {
