@@ -107,7 +107,7 @@ export default {
   computed: {
     propsImagesAndCustomImages() {
       const nonreactiveCachImages = JSON.parse(
-        JSON.stringify(...this.cacheImages)
+        JSON.stringify(this.cacheImages)
       );
 
       return [...this.images, ...nonreactiveCachImages];
