@@ -118,7 +118,7 @@ var VueSignaturePad = {
   computed: {
     propsImagesAndCustomImages: function propsImagesAndCustomImages() {
       var nonreactiveCachImages = JSON.parse(
-        JSON.stringify.apply(JSON, this.cacheImages)
+        JSON.stringify(this.cacheImages)
       );
 
       return this.images.concat( nonreactiveCachImages);
