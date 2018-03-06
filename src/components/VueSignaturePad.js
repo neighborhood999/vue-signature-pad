@@ -30,7 +30,8 @@ export default {
     }
   },
   data: () => ({
-    signaturePad: {}
+    signaturePad: {},
+    cacheImages: []
   }),
   mounted() {
     const { options } = this;
@@ -86,6 +87,8 @@ export default {
       }
     },
     mergeImageAndSignature(customSignature) {
+      this.cacheImages = [...this.cacheImages, customSignature];
+
       return mergeImages([...this.images, customSignature]);
     },
     lockSignaturePad() {
@@ -93,6 +96,21 @@ export default {
     },
     openSigaturePad() {
       return this.signaturePad.on();
+    },
+    getPropsImagesWithCachImages() {
+      return this.propsImagesAndCustomImages;
+    },
+    clearCacheImages() {
+      this.cacheImages = [];
+    }
+  },
+  computed: {
+    propsImagesAndCustomImages() {
+      const nonreactiveCachImages = JSON.parse(
+        JSON.stringify(...this.cacheImages)
+      );
+
+      return [...this.images, ...nonreactiveCachImages];
     }
   },
   render(createElement) {
