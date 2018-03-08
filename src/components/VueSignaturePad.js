@@ -1,6 +1,10 @@
 import SignaturePad from 'signature_pad';
 import mergeImages from 'merge-images';
-import { DEFAULT_OPTIONS, checkSaveType } from '../utils/index';
+import {
+  DEFAULT_OPTIONS,
+  TRANSPARENT_PNG,
+  checkSaveType
+} from '../utils/index';
 
 export default {
   name: 'VueSignaturePad',
@@ -31,7 +35,8 @@ export default {
   },
   data: () => ({
     signaturePad: {},
-    cacheImages: []
+    cacheImages: [],
+    signatureData: { src: TRANSPARENT_PNG, x: 0, y: 0 }
   }),
   mounted() {
     const { options } = this;
@@ -57,6 +62,7 @@ export default {
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
+      this.signatureData = { src: TRANSPARENT_PNG, x: 0, y: 0 };
     },
     saveSignature() {
       const { signaturePad, saveType } = this;
@@ -71,12 +77,14 @@ export default {
           ...status,
           isEmpty: true
         };
-      }
+      } else {
+        this.signatureData = signaturePad.toDataURL(saveType);
 
-      return {
-        ...status,
-        data: signaturePad.toDataURL(saveType)
-      };
+        return {
+          ...status,
+          data: this.signatureData
+        };
+      }
     },
     undoSignature() {
       const { signaturePad } = this;
@@ -87,9 +95,22 @@ export default {
       }
     },
     mergeImageAndSignature(customSignature) {
-      this.cacheImages = [...this.cacheImages, customSignature];
+      this.signatureData = customSignature;
 
-      return mergeImages([...this.images, ...this.cacheImages]);
+      return mergeImages([
+        ...this.images,
+        ...this.cacheImages,
+        this.signatureData
+      ]);
+    },
+    addImages(images = []) {
+      this.cacheImages = [...this.cacheImages, ...images];
+
+      return mergeImages([
+        ...this.images,
+        ...this.cacheImages,
+        this.signatureData
+      ]);
     },
     lockSignaturePad() {
       return this.signaturePad.off();
@@ -97,7 +118,7 @@ export default {
     openSignaturePad() {
       return this.signaturePad.on();
     },
-    getPropsImagesWithCacheImages() {
+    getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages() {
@@ -106,11 +127,12 @@ export default {
   },
   computed: {
     propsImagesAndCustomImages() {
-      const nonreactiveCachImages = JSON.parse(
+      const nonReactiveProrpImages = JSON.parse(JSON.stringify(this.images));
+      const nonReactiveCachImages = JSON.parse(
         JSON.stringify(this.cacheImages)
       );
 
-      return [...this.images, ...nonreactiveCachImages];
+      return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
   render(createElement) {

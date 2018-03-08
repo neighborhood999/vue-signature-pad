@@ -15,6 +15,9 @@ var DEFAULT_OPTIONS = {
   velocityFilterWeight: 0.7
 };
 
+var TRANSPARENT_PNG =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
 var VueSignaturePad = {
   name: 'VueSignaturePad',
   props: {
@@ -44,7 +47,8 @@ var VueSignaturePad = {
   },
   data: function () { return ({
     signaturePad: {},
-    cacheImages: []
+    cacheImages: [],
+    signatureData: { src: TRANSPARENT_PNG, x: 0, y: 0 }
   }); },
   mounted: function mounted() {
     var ref = this;
@@ -69,6 +73,7 @@ var VueSignaturePad = {
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
+      this.signatureData = { src: TRANSPARENT_PNG, x: 0, y: 0 };
     },
     saveSignature: function saveSignature() {
       var ref = this;
@@ -83,10 +88,12 @@ var VueSignaturePad = {
       if (signaturePad.isEmpty()) {
         return Object.assign({}, status,
           {isEmpty: true});
-      }
+      } else {
+        this.signatureData = signaturePad.toDataURL(saveType);
 
-      return Object.assign({}, status,
-        {data: signaturePad.toDataURL(saveType)});
+        return Object.assign({}, status,
+          {data: this.signatureData});
+      }
     },
     undoSignature: function undoSignature() {
       var ref = this;
@@ -98,9 +105,20 @@ var VueSignaturePad = {
       }
     },
     mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
-      this.cacheImages = this.cacheImages.concat( [customSignature]);
+      this.signatureData = customSignature;
 
-      return mergeImages(this.images.concat( this.cacheImages));
+      return mergeImages(this.images.concat( this.cacheImages,
+        [this.signatureData]
+      ));
+    },
+    addImages: function addImages(images) {
+      if ( images === void 0 ) images = [];
+
+      this.cacheImages = this.cacheImages.concat( images);
+
+      return mergeImages(this.images.concat( this.cacheImages,
+        [this.signatureData]
+      ));
     },
     lockSignaturePad: function lockSignaturePad() {
       return this.signaturePad.off();
@@ -108,7 +126,7 @@ var VueSignaturePad = {
     openSignaturePad: function openSignaturePad() {
       return this.signaturePad.on();
     },
-    getPropsImagesWithCacheImages: function getPropsImagesWithCacheImages() {
+    getPropImagesAndCacheImages: function getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages: function clearCacheImages() {
@@ -117,11 +135,12 @@ var VueSignaturePad = {
   },
   computed: {
     propsImagesAndCustomImages: function propsImagesAndCustomImages() {
-      var nonreactiveCachImages = JSON.parse(
+      var nonReactiveProrpImages = JSON.parse(JSON.stringify(this.images));
+      var nonReactiveCachImages = JSON.parse(
         JSON.stringify(this.cacheImages)
       );
 
-      return this.images.concat( nonreactiveCachImages);
+      return nonReactiveProrpImages.concat( nonReactiveCachImages);
     }
   },
   render: function render(createElement) {

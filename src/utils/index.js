@@ -11,3 +11,6 @@ export const DEFAULT_OPTIONS = {
   penColor: 'black',
   velocityFilterWeight: 0.7
 };
+
+export const TRANSPARENT_PNG =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
