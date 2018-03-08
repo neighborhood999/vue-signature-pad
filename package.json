@@ -1,7 +1,7 @@
 {
   "name": "vue-signature-pad",
   "description": "SignaturePad component for Vue.js",
-  "version": "0.0.9",
+  "version": "0.0.9-beta.1",
   "main": "dist/vue-signature-pad.common.js",
   "unpkg": "dist/vue-signature-pad.js",
   "module": "dist/vue-signature-pad.esm.js",
