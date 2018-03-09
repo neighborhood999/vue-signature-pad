@@ -15,8 +15,16 @@ var DEFAULT_OPTIONS = {
   velocityFilterWeight: 0.7
 };
 
-var TRANSPARENT_PNG =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+var convert2NonReactive = (observerValue = JSON.parse(
+  JSON.stringify(observerValue)
+));
+
+var TRANSPARENT_PNG = {
+  src:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+  x: 0,
+  y: 0
+};
 
 var VueSignaturePad = {
   name: 'VueSignaturePad',
@@ -48,7 +56,7 @@ var VueSignaturePad = {
   data: function () { return ({
     signaturePad: {},
     cacheImages: [],
-    signatureData: { src: TRANSPARENT_PNG, x: 0, y: 0 }
+    signatureData: TRANSPARENT_PNG
   }); },
   mounted: function mounted() {
     var ref = this;
@@ -73,7 +81,7 @@ var VueSignaturePad = {
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
-      this.signatureData = { src: TRANSPARENT_PNG, x: 0, y: 0 };
+      this.signatureData = TRANSPARENT_PNG;
     },
     saveSignature: function saveSignature() {
       var ref = this;
@@ -135,10 +143,8 @@ var VueSignaturePad = {
   },
   computed: {
     propsImagesAndCustomImages: function propsImagesAndCustomImages() {
-      var nonReactiveProrpImages = JSON.parse(JSON.stringify(this.images));
-      var nonReactiveCachImages = JSON.parse(
-        JSON.stringify(this.cacheImages)
-      );
+      var nonReactiveProrpImages = convert2NonReactive(this.images);
+      var nonReactiveCachImages = convert2NonReactive(this.cacheImages);
 
       return nonReactiveProrpImages.concat( nonReactiveCachImages);
     }
