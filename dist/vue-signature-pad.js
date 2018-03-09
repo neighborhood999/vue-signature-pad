@@ -21,13 +21,10 @@ var DEFAULT_OPTIONS = {
   velocityFilterWeight: 0.7
 };
 
-var convert2NonReactive = (observerValue = JSON.parse(
-  JSON.stringify(observerValue)
-));
+var convert2NonReactive = function (observerValue) { return JSON.parse(JSON.stringify(observerValue)); };
 
 var TRANSPARENT_PNG = {
-  src:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+  src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
   x: 0,
   y: 0
 };

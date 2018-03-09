@@ -12,9 +12,8 @@ export const DEFAULT_OPTIONS = {
   velocityFilterWeight: 0.7
 };
 
-export const convert2NonReactive = (observerValue = JSON.parse(
-  JSON.stringify(observerValue)
-));
+export const convert2NonReactive = observerValue =>
+  JSON.parse(JSON.stringify(observerValue));
 
 export const TRANSPARENT_PNG = {
   src:
