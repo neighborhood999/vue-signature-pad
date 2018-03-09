@@ -3,7 +3,8 @@ import mergeImages from 'merge-images';
 import {
   DEFAULT_OPTIONS,
   TRANSPARENT_PNG,
-  checkSaveType
+  checkSaveType,
+  convert2NonReactive
 } from '../utils/index';
 
 export default {
@@ -36,7 +37,7 @@ export default {
   data: () => ({
     signaturePad: {},
     cacheImages: [],
-    signatureData: { src: TRANSPARENT_PNG, x: 0, y: 0 }
+    signatureData: TRANSPARENT_PNG
   }),
   mounted() {
     const { options } = this;
@@ -62,7 +63,7 @@ export default {
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
-      this.signatureData = { src: TRANSPARENT_PNG, x: 0, y: 0 };
+      this.signatureData = TRANSPARENT_PNG;
     },
     saveSignature() {
       const { signaturePad, saveType } = this;
@@ -127,10 +128,8 @@ export default {
   },
   computed: {
     propsImagesAndCustomImages() {
-      const nonReactiveProrpImages = JSON.parse(JSON.stringify(this.images));
-      const nonReactiveCachImages = JSON.parse(
-        JSON.stringify(this.cacheImages)
-      );
+      const nonReactiveProrpImages = convert2NonReactive(this.images);
+      const nonReactiveCachImages = convert2NonReactive(this.cacheImages);
 
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
