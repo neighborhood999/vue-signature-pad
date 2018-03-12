@@ -21,6 +21,7 @@ import VueSignaturePad from 'vue-signature-pad';
 
 Vue.use(VueSignaturePad);
 ```
+
 ```js
 <template>
   <div id="app">
@@ -65,16 +66,16 @@ Vue.use(VueSignaturePad);
 
 ## Methods
 
-| Method Name    | Argument Type | Description     |
-| :------------- | :------------- |
-| `saveSignature()` | - | Will return target canvas **status** and **data**.       |
-| `undoSignature()` | - | Undo |
+| Method Name                         | Argument Type    | Description                                              |
+| :---------------------------------- | :--------------- | -------------------------------------------------------- |
+| `saveSignature()`                   | -                | Will return target canvas **status** and **data**.       |
+| `undoSignature()`                   | -                | Undo                                                     |
 | `mergeImageAndSignature(signature)` | Object or String | Provide `images` as props and will merge with signature. |
-| `addImages(images)` | Array | Add more images merge with signature. |
-| `lockSignaturePad()` | - | Lock target signature pad. |
-| `openSignaturePad()` | - | Open target signature pad. |
-| `getPropImagesAndCacheImages()` | - | Get all the images information. |
-| `clearCacheImages()` | - | Clear cache images. |
+| `addImages(images)`                 | Array            | Add more images merge with signature.                    |
+| `lockSignaturePad()`                | -                | Lock target signature pad.                               |
+| `openSignaturePad()`                | -                | Open target signature pad.                               |
+| `getPropImagesAndCacheImages()`     | -                | Get all the images information.                          |
+| `clearCacheImages()`                | -                | Clear cache images.                                      |
 
 ## Credits
 
