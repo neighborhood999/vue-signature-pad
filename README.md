@@ -63,6 +63,19 @@ Vue.use(VueSignaturePad);
 | images      | Array  | `[]`                                                                                                    | Merge signature with provide image                                  | `['A.png', 'B.png', 'C.png']` or `[{ src: 'A.png', x: 0, y: 0 }, { src: 'B.png', x: 0, y: 10 }, { src: 'C.png', x: 0, y: 20 }]` |
 | customStyle | Object | `{}`                                                                                                    | Custom canvas parent `div` style                                    | `{ border: black 3px solid }`                                                                                                   |
 
+## Methods
+
+| Method Name    | Argument Type | Description     |
+| :------------- | :------------- |
+| `saveSignature()` | - | Will return target canvas **status** and **data**.       |
+| `undoSignature()` | - | Undo |
+| `mergeImageAndSignature(signature)` | Object or String | Provide `images` as props and will merge with signature. |
+| `addImages(images)` | Array | Add more images merge with signature. |
+| `lockSignaturePad()` | - | Lock target signature pad. |
+| `openSignaturePad()` | - | Open target signature pad. |
+| `getPropImagesAndCacheImages()` | - | Get all the images information. |
+| `clearCacheImages()` | - | Clear cache images. |
+
 ## Credits
 
 [szimek/signature_pad](https://github.com/szimek/signature_pad) - HTML5 canvas based smooth signature drawing
