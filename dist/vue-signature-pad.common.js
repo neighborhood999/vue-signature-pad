@@ -78,12 +78,14 @@ var VueSignaturePad = {
   },
   methods: {
     resizeCanvas: function resizeCanvas(canvas) {
+      var data = this.signaturePad.toData();
       var ratio = Math.max(window.devicePixelRatio || 1, 1);
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
       this.signatureData = TRANSPARENT_PNG;
+      this.signaturePad.fromData(data);
     },
     saveSignature: function saveSignature() {
       var ref = this;
