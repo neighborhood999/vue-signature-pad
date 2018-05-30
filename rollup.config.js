@@ -1,6 +1,7 @@
 import pkg from './package.json';
 import buble from 'rollup-plugin-buble';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
+import { minify } from 'uglify-es';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
@@ -47,7 +48,7 @@ if (isProduction) {
       'process.env.NODE_ENV': JSON.stringify('production')
     })
   );
-  config.plugins.push(uglify());
+  config.plugins.push(uglify({}, minify));
 }
 
 export default config;
