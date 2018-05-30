@@ -23,7 +23,7 @@ import VueSignaturePad from 'vue-signature-pad';
 Vue.use(VueSignaturePad);
 ```
 
-```js
+```xml
 <template>
   <div id="app">
     <VueSignaturePad
@@ -56,27 +56,27 @@ Vue.use(VueSignaturePad);
 
 ## Props
 
-| Name        | Type   | Default                                                                                                 | Description                                                         | Example                                                                                                                         |
-| :---------- | :----- | :------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------ |
-| width       | String | `100%`                                                                                                  | Set the canvas parent `div` width                                   | -                                                                                                                               |
-| height      | String | `100%`                                                                                                  | Set the canvas parent `div` height                                  | -                                                                                                                               |
-| saveType    | String | `image/png`                                                                                             | Save image type, support `image/png`, `image/jpeg`, `image/svg+xml` | -                                                                                                                               |
-| options     | Object | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13) | Set the signature pad options                                       | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13)                         |
-| images      | Array  | `[]`                                                                                                    | Merge signature with provide image                                  | `['A.png', 'B.png', 'C.png']` or `[{ src: 'A.png', x: 0, y: 0 }, { src: 'B.png', x: 0, y: 10 }, { src: 'C.png', x: 0, y: 20 }]` |
-| customStyle | Object | `{}`                                                                                                    | Custom canvas parent `div` style                                    | `{ border: black 3px solid }`                                                                                                   |
+| Name        | Type   | Default                                                                                                 | Description                                                     | Example                                                                                                                         |
+| :---------- | :----- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| width       | String | `100%`                                                                                                  | Set the `div` width.                                            | -                                                                                                                               |
+| height      | String | `100%`                                                                                                  | Set the `div` height.                                           | -                                                                                                                               |
+| saveType    | String | `image/png`                                                                                             | Image type, support `image/png`, `image/jpeg`, `image/svg+xml`. | -                                                                                                                               |
+| options     | Object | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13) | Set the signature pad options.                                  | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13)                         |
+| images      | Array  | `[]`                                                                                                    | Merge signature with the provide images.                        | `['A.png', 'B.png', 'C.png']` or `[{ src: 'A.png', x: 0, y: 0 }, { src: 'B.png', x: 0, y: 10 }, { src: 'C.png', x: 0, y: 20 }]` |
+| customStyle | Object | `{}`                                                                                                    | Custom `div` style.                                             | `{ border: black 3px solid }`                                                                                                   |
 
 ## Methods
 
-| Method Name                         | Argument Type    | Description                                              |
-| :---------------------------------- | :--------------- | -------------------------------------------------------- |
-| `saveSignature()`                   | -                | Will return target canvas **status** and **data**.       |
-| `undoSignature()`                   | -                | Undo                                                     |
-| `mergeImageAndSignature(signature)` | Object or String | Provide `images` as props and will merge with signature. |
-| `addImages(images)`                 | Array            | Add more images merge with signature.                    |
-| `lockSignaturePad()`                | -                | Lock target signature pad.                               |
-| `openSignaturePad()`                | -                | Open target signature pad.                               |
-| `getPropImagesAndCacheImages()`     | -                | Get all the images information.                          |
-| `clearCacheImages()`                | -                | Clear cache images.                                      |
+| Name                                | Argument Type        | Description                                                                 |
+| :---------------------------------- | :------------------- | --------------------------------------------------------------------------- |
+| `saveSignature()`                   | -                    | Will return target canvas **status** and **data**.                          |
+| `undoSignature()`                   | -                    | Undo                                                                        |
+| `mergeImageAndSignature(signature)` | `Object` or `String` | Provide `images` as props and will merge with signature.                    |
+| `addImages(images)`                 | `Array`              | Provide the images merge with signature. Reference above `images` property. |
+| `lockSignaturePad()`                | -                    | Lock target signature pad.                                                  |
+| `openSignaturePad()`                | -                    | Open target signature pad.                                                  |
+| `getPropImagesAndCacheImages()`     | -                    | Get all the images information.                                             |
+| `clearCacheImages()`                | -                    | Clear cache images.                                                         |
 
 ## Credits
 
