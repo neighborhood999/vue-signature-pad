@@ -97,6 +97,9 @@ export default {
         return signaturePad.fromData(record.slice(0, -1));
       }
     },
+    clearSignature() {
+      return this.signaturePad.clear();
+    },
     mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
 
