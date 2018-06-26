@@ -71,6 +71,7 @@ Vue.use(VueSignaturePad);
 | :---------------------------------- | :------------------- | --------------------------------------------------------------------------- |
 | `saveSignature()`                   | -                    | Will return target canvas **status** and **data**.                          |
 | `undoSignature()`                   | -                    | Undo                                                                        |
+| `clearSignature()`                  | -                    | Clear                                                                       |
 | `mergeImageAndSignature(signature)` | `Object` or `String` | Provide `images` as props and will merge with signature.                    |
 | `addImages(images)`                 | `Array`              | Provide the images merge with signature. Reference above `images` property. |
 | `lockSignaturePad()`                | -                    | Lock target signature pad.                                                  |
