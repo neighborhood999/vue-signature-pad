@@ -118,6 +118,9 @@
           return signaturePad.fromData(record.slice(0, -1));
         }
       },
+      clearSignature: function clearSignature() {
+        return this.signaturePad.clear();
+      },
       mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
         this.signatureData = customSignature;
 
