@@ -23,7 +23,7 @@ import VueSignaturePad from 'vue-signature-pad';
 Vue.use(VueSignaturePad);
 ```
 
-```xml
+```vue
 <template>
   <div id="app">
     <VueSignaturePad
