@@ -5,10 +5,8 @@ import { signatureMockData, mockEncodeDataURL } from './mock';
 describe('VueSignaturePad Component', () => {
   it('should be receive default props', () => {
     const wrapper = shallow(VueSignaturePad);
-
     const expectedWidth = '100%';
     const expectedHeight = '100%';
-    const expectedSaveType = 'image/png';
     const expectedOptions = {};
     const expectedImages = [];
 
@@ -28,27 +26,30 @@ describe('VueSignaturePad Component', () => {
     expect(() => addOptionsWrapper.vm.saveSignature()).toThrow();
   });
 
-  it('should be return signaturePad status and data', () => {
+  it('should be return empty status and undefined data', () => {
     const wrapper = shallow(VueSignaturePad);
 
-    wrapper.vm.saveSignature();
     expect(wrapper.vm.saveSignature()).toEqual({
       isEmpty: true,
       data: undefined
     });
+  });
+
+  it('should be return signaturePad status and data', () => {
+    const wrapper = shallow(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
-        ...wrapper.vm.signaturePad,
         _data: signatureMockData,
         isEmpty() {
-          return false; // mock `isEmpty` action
+          return false;
         },
-        toDataURL(type, ...options) {
+        toDataURL() {
           return mockEncodeDataURL;
         }
       }
     });
+
     expect(wrapper.vm.saveSignature()).toEqual({
       isEmpty: false,
       data: mockEncodeDataURL
@@ -60,10 +61,9 @@ describe('VueSignaturePad Component', () => {
 
     wrapper.setData({
       signaturePad: {
-        ...wrapper.vm.signaturePad,
         _data: signatureMockData,
         isEmpty() {
-          return false; // mock `isEmpty` action
+          return false;
         },
         toData() {
           return signatureMockData;
@@ -85,10 +85,9 @@ describe('VueSignaturePad Component', () => {
 
     wrapper.setData({
       signaturePad: {
-        ...wrapper.vm.signaturePad,
         _data: signatureMockData,
         isEmpty() {
-          return false; // mock `isEmpty` action
+          return false;
         },
         toData() {
           return signatureMockData;
@@ -100,10 +99,10 @@ describe('VueSignaturePad Component', () => {
           return data;
         },
         off() {
-          return 'lock'; // mock lock action
+          return 'lock';
         },
         on() {
-          return 'open'; // mock lock action
+          return 'open';
         }
       }
     });
@@ -114,8 +113,8 @@ describe('VueSignaturePad Component', () => {
 
   it('should be get props images and cache images', () => {
     const wrapper = shallow(VueSignaturePad);
-    wrapper.setData({ cacheImages: ['foo', 'bar'] });
 
+    wrapper.setData({ cacheImages: ['foo', 'bar'] });
     expect(wrapper.vm.getPropImagesAndCacheImages()).toEqual(['foo', 'bar']);
   });
 
@@ -127,5 +126,19 @@ describe('VueSignaturePad Component', () => {
 
     wrapper.vm.clearCacheImages();
     expect(wrapper.vm.cacheImages).toEqual([]);
+  });
+
+  it('should be clear signatrue', () => {
+    const wrapper = shallow(VueSignaturePad);
+
+    wrapper.setData({
+      signaturePad: {
+        clear() {
+          return true;
+        }
+      }
+    });
+
+    expect(wrapper.vm.clearSignature()).toBe(true);
   });
 });
