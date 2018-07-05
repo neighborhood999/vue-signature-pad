@@ -76,7 +76,7 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-vue": "^4.4.0",
-    "gzip-size-cli": "^2.1.0",
+    "gzip-size-cli": "^3.0.0",
     "husky": "^0.14.3",
     "jest": "^22.4.3",
     "jest-serializer-vue": "^2.0.2",
