@@ -8,6 +8,10 @@
 
 > Vue component wrap for [signature pad](https://github.com/szimek/signature_pad)
 
+## Demo
+
+[![Edit Vue Signature Pad Demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n5qjp3oqv4)
+
 ## Installation
 
 ```sh
