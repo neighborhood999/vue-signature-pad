@@ -55,6 +55,9 @@
       images: {
         type: Array,
         default: function () { return []; }
+      },
+      giveSignatureData: {
+        type: String
       }
     },
     data: function () { return ({
@@ -118,9 +121,6 @@
           return signaturePad.fromData(record.slice(0, -1));
         }
       },
-      clearSignature: function clearSignature() {
-        return this.signaturePad.clear();
-      },
       mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
         this.signatureData = customSignature;
 
@@ -137,6 +137,9 @@
           [this.signatureData]
         ));
       },
+      fromDataURL: function fromDataURL(data) {
+        return this.signaturePad.fromDataURL(data);
+      },
       lockSignaturePad: function lockSignaturePad() {
         return this.signaturePad.off();
       },
@@ -148,6 +151,11 @@
       },
       clearCacheImages: function clearCacheImages() {
         this.cacheImages = [];
+
+        return this.cacheImages;
+      },
+      clearSignature: function clearSignature() {
+        return this.signaturePad.clear();
       }
     },
     computed: {
