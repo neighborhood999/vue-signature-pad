@@ -55,9 +55,6 @@
       images: {
         type: Array,
         default: function () { return []; }
-      },
-      giveSignatureData: {
-        type: String
       }
     },
     data: function () { return ({
@@ -145,6 +142,9 @@
       },
       openSignaturePad: function openSignaturePad() {
         return this.signaturePad.on();
+      },
+      isEmpty: function isEmpty() {
+        return this.signaturePad.isEmpty();
       },
       getPropImagesAndCacheImages: function getPropImagesAndCacheImages() {
         return this.propsImagesAndCustomImages;

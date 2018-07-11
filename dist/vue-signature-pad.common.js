@@ -53,9 +53,6 @@ var VueSignaturePad = {
     images: {
       type: Array,
       default: function () { return []; }
-    },
-    giveSignatureData: {
-      type: String
     }
   },
   data: function () { return ({
@@ -143,6 +140,9 @@ var VueSignaturePad = {
     },
     openSignaturePad: function openSignaturePad() {
       return this.signaturePad.on();
+    },
+    isEmpty: function isEmpty() {
+      return this.signaturePad.isEmpty();
     },
     getPropImagesAndCacheImages: function getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;

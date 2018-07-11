@@ -164,4 +164,19 @@ describe('VueSignaturePad Component', () => {
       giveSignatureData
     );
   });
+
+  it('should be return siganture pad empty status', () => {
+    const wrapper = shallow(VueSignaturePad);
+
+    wrapper.setData({
+      signaturePad: {
+        _data: '',
+        isEmpty() {
+          return this._data.length > 0 ? false : true;
+        }
+      }
+    });
+
+    expect(wrapper.vm.isEmpty()).toBe(true);
+  });
 });

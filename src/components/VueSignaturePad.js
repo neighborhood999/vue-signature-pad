@@ -124,6 +124,9 @@ export default {
     openSignaturePad() {
       return this.signaturePad.on();
     },
+    isEmpty() {
+      return this.signaturePad.isEmpty();
+    },
     getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
