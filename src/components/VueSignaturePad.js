@@ -32,9 +32,6 @@ export default {
     images: {
       type: Array,
       default: () => []
-    },
-    giveSignatureData: {
-      type: String
     }
   },
   data: () => ({
