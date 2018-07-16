@@ -141,4 +141,42 @@ describe('VueSignaturePad Component', () => {
 
     expect(wrapper.vm.clearSignature()).toBe(true);
   });
+
+  it('should be read signature from given data', () => {
+    const giveSignatureData =
+      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+    const wrapper = shallow(VueSignaturePad, {
+      propsData: {
+        giveSignatureData
+      }
+    });
+
+    wrapper.setData({
+      signaturePad: {
+        fromDataURL(data) {
+          return data;
+        }
+      }
+    });
+
+    expect(wrapper.vm.fromDataURL(giveSignatureData)).toEqual(
+      giveSignatureData
+    );
+  });
+
+  it('should be return siganture pad empty status', () => {
+    const wrapper = shallow(VueSignaturePad);
+
+    wrapper.setData({
+      signaturePad: {
+        _data: '',
+        isEmpty() {
+          return this._data.length > 0 ? false : true;
+        }
+      }
+    });
+
+    expect(wrapper.vm.isEmpty()).toBe(true);
+  });
 });

@@ -112,9 +112,6 @@ var VueSignaturePad = {
         return signaturePad.fromData(record.slice(0, -1));
       }
     },
-    clearSignature: function clearSignature() {
-      return this.signaturePad.clear();
-    },
     mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
 
@@ -131,17 +128,28 @@ var VueSignaturePad = {
         [this.signatureData]
       ));
     },
+    fromDataURL: function fromDataURL(data) {
+      return this.signaturePad.fromDataURL(data);
+    },
     lockSignaturePad: function lockSignaturePad() {
       return this.signaturePad.off();
     },
     openSignaturePad: function openSignaturePad() {
       return this.signaturePad.on();
     },
+    isEmpty: function isEmpty() {
+      return this.signaturePad.isEmpty();
+    },
     getPropImagesAndCacheImages: function getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages: function clearCacheImages() {
       this.cacheImages = [];
+
+      return this.cacheImages;
+    },
+    clearSignature: function clearSignature() {
+      return this.signaturePad.clear();
     }
   },
   computed: {

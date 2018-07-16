@@ -97,9 +97,6 @@ export default {
         return signaturePad.fromData(record.slice(0, -1));
       }
     },
-    clearSignature() {
-      return this.signaturePad.clear();
-    },
     mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
 
@@ -118,17 +115,28 @@ export default {
         this.signatureData
       ]);
     },
+    fromDataURL(data) {
+      return this.signaturePad.fromDataURL(data);
+    },
     lockSignaturePad() {
       return this.signaturePad.off();
     },
     openSignaturePad() {
       return this.signaturePad.on();
     },
+    isEmpty() {
+      return this.signaturePad.isEmpty();
+    },
     getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
     clearCacheImages() {
       this.cacheImages = [];
+
+      return this.cacheImages;
+    },
+    clearSignature() {
+      return this.signaturePad.clear();
     }
   },
   computed: {

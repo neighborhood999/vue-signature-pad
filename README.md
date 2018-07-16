@@ -82,6 +82,8 @@ Vue.use(VueSignaturePad);
 | `openSignaturePad()`                | -                    | Open target signature pad.                                                  |
 | `getPropImagesAndCacheImages()`     | -                    | Get all the images information.                                             |
 | `clearCacheImages()`                | -                    | Clear cache images.                                                         |
+| `fromDataURL(data)`                 | `String`             | Draw image from data URL.                                                   |
+| `isEmpty()`                         | -                    | Return signature canvas have data.                                          |
 
 ## Credits
 
