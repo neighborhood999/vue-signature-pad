@@ -94,5 +94,8 @@
     "uglify-es": "^3.3.9",
     "vue-template-compiler": "^2.5.13"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "license": "MIT"
 }
