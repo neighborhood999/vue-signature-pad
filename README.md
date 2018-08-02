@@ -84,10 +84,16 @@ Vue.use(VueSignaturePad);
 | `clearCacheImages()`                | -                    | Clear cache images.                                                         |
 | `fromDataURL(data)`                 | `String`             | Draw image from data URL.                                                   |
 | `isEmpty()`                         | -                    | Return signature canvas have data.                                          |
+| `toData()`                          | -                    | Return signature array of raw data points. eg: [{x,y,timing,color},..]      |
 
 ## Credits
 
 [szimek/signature_pad](https://github.com/szimek/signature_pad) - HTML5 canvas based smooth signature drawing
+
+## Contributors
+
+[butilities](https://github.com/butilities)
+
 
 ## LICENSE
 
