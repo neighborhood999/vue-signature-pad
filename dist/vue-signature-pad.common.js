@@ -17,7 +17,9 @@ var DEFAULT_OPTIONS = {
   minDistance: 5,
   backgroundColor: 'rgba(0,0,0,0)',
   penColor: 'black',
-  velocityFilterWeight: 0.7
+  velocityFilterWeight: 0.7,
+  onBegin: function () {},
+  onEnd: function () {}
 };
 
 var convert2NonReactive = function (observerValue) { return JSON.parse(JSON.stringify(observerValue)); };
