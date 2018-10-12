@@ -10,7 +10,9 @@ export const DEFAULT_OPTIONS = {
   minDistance: 5,
   backgroundColor: 'rgba(0,0,0,0)',
   penColor: 'black',
-  velocityFilterWeight: 0.7
+  velocityFilterWeight: 0.7,
+  onBegin: () => {},
+  onEnd: () => {}
 };
 
 export const convert2NonReactive = observerValue =>
