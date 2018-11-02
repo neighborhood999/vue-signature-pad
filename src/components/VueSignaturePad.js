@@ -1,29 +1,29 @@
-import SignaturePad from "signature_pad";
-import mergeImages from "merge-images";
+import SignaturePad from 'signature_pad';
+import mergeImages from 'merge-images';
 import {
   DEFAULT_OPTIONS,
   TRANSPARENT_PNG,
   checkSaveType,
   convert2NonReactive
-} from "../utils/index";
+} from '../utils/index';
 
 export default {
-  name: "VueSignaturePad",
+  name: 'VueSignaturePad',
   props: {
     width: {
       type: String,
-      default: "100%"
+      default: '100%'
     },
     height: {
       type: String,
-      default: "100%"
+      default: '100%'
     },
     customStyle: {
       type: Object
     },
     saveType: {
       type: String,
-      default: "image/png"
+      default: 'image/png'
     },
     options: {
       type: Object,
@@ -48,18 +48,22 @@ export default {
     });
     this.signaturePad = signaturePad;
 
-    window.addEventListener("resize", this.resizeCanvas.bind(this), false);
+    window.addEventListener(
+      'resize',
+      this.resizeCanvas.bind(this),
+      false
+    );
 
     this.resizeCanvas();
   },
   methods: {
-    resizeCanvas() {
+    resizeCanvas(canvas) {
       const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
-      canvas.getContext("2d").scale(ratio, ratio);
+      canvas.getContext('2d').scale(ratio, ratio);
       this.signaturePad.clear();
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
@@ -69,7 +73,7 @@ export default {
       const status = { isEmpty: false, data: undefined };
 
       if (!checkSaveType(saveType)) {
-        throw new Error("Image type is incorrect!");
+        throw new Error('Image type is incorrect!');
       }
 
       if (signaturePad.isEmpty()) {
@@ -148,7 +152,7 @@ export default {
     const { width, height, customStyle } = this;
 
     return createElement(
-      "div",
+      'div',
       {
         style: {
           width,
@@ -157,12 +161,12 @@ export default {
         }
       },
       [
-        createElement("canvas", {
+        createElement('canvas', {
           style: {
-            width: "100%",
-            height: "100%"
+            width: '100%',
+            height: '100%'
           },
-          ref: "signaturePadCanvas"
+          ref: 'signaturePadCanvas'
         })
       ]
     );
