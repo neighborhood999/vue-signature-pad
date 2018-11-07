@@ -48,16 +48,12 @@ export default {
     });
     this.signaturePad = signaturePad;
 
-    window.addEventListener(
-      'resize',
-      this.resizeCanvas.bind(this),
-      false
-    );
+    window.addEventListener('resize', this.resizeCanvas.bind(this), false);
 
     this.resizeCanvas();
   },
   methods: {
-    resizeCanvas(canvas) {
+    resizeCanvas() {
       const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
