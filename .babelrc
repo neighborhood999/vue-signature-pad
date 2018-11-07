@@ -1,12 +1,17 @@
 {
-  "presets": [
-    ["env", { "modules": false }]
-  ],
+  "presets": [["@babel/preset-env", { "modules": false }]],
   "env": {
     "test": {
-      "plugins": ["transform-object-rest-spread"],
+      "plugins": ["@babel/plugin-proposal-object-rest-spread"],
       "presets": [
-        ["env", { "targets": { "node": "current" }}]
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
       ]
     }
   }

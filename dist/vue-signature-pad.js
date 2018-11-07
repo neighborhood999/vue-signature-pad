@@ -73,16 +73,13 @@
         options));
       this.signaturePad = signaturePad;
 
-      window.addEventListener(
-        'resize',
-        this.resizeCanvas.bind(this, canvas),
-        false
-      );
+      window.addEventListener('resize', this.resizeCanvas.bind(this), false);
 
-      this.resizeCanvas(canvas);
+      this.resizeCanvas();
     },
     methods: {
-      resizeCanvas: function resizeCanvas(canvas) {
+      resizeCanvas: function resizeCanvas() {
+        var canvas = this.$refs.signaturePadCanvas;
         var data = this.signaturePad.toData();
         var ratio = Math.max(window.devicePixelRatio || 1, 1);
         canvas.width = canvas.offsetWidth * ratio;
