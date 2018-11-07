@@ -50,14 +50,15 @@ export default {
 
     window.addEventListener(
       'resize',
-      this.resizeCanvas.bind(this, canvas),
+      this.resizeCanvas.bind(this),
       false
     );
 
-    this.resizeCanvas(canvas);
+    this.resizeCanvas();
   },
   methods: {
     resizeCanvas(canvas) {
+      const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
       canvas.width = canvas.offsetWidth * ratio;
