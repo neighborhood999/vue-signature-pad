@@ -6,7 +6,7 @@ import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
-const GLOBALS = {
+const globals = {
   signature_pad: 'SignaturePad',
   'merge-images': 'mergeImages'
 };
@@ -27,17 +27,17 @@ const config = {
     commonjs()
   ],
   output: [
-    { file: pkg.main, format: 'cjs', globals: GLOBALS },
+    { file: pkg.main, format: 'cjs', globals },
     {
       file: pkg.module,
       format: 'es',
-      globals: GLOBALS
+      globals
     },
     {
       file: pkg.unpkg,
       format: 'umd',
       name: 'vue-signature-pad',
-      globals: GLOBALS
+      globals
     }
   ]
 };

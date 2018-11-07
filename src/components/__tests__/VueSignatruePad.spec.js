@@ -1,10 +1,10 @@
-import { shallow } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VueSignaturePad from '../VueSignaturePad';
 import { signatureMockData, mockEncodeDataURL } from './mock';
 
 describe('VueSignaturePad Component', () => {
   it('should be receive default props', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
     const expectedWidth = '100%';
     const expectedHeight = '100%';
     const expectedOptions = {};
@@ -17,7 +17,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be throw incorrect image error message', () => {
-    const addOptionsWrapper = shallow(VueSignaturePad, {
+    const addOptionsWrapper = shallowMount(VueSignaturePad, {
       propsData: {
         saveType: 'text/html'
       }
@@ -27,7 +27,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be return empty status and undefined data', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     expect(wrapper.vm.saveSignature()).toEqual({
       isEmpty: true,
@@ -36,7 +36,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be return signaturePad status and data', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
@@ -57,7 +57,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be undo draw action', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
@@ -81,7 +81,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be lock or open signatrue pad', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
@@ -112,14 +112,14 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be get props images and cache images', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({ cacheImages: ['foo', 'bar'] });
     expect(wrapper.vm.getPropImagesAndCacheImages()).toEqual(['foo', 'bar']);
   });
 
   it('should be clear cache images', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({ cacheImages: ['foo', 'bar'] });
     expect(wrapper.vm.getPropImagesAndCacheImages()).toEqual(['foo', 'bar']);
@@ -129,7 +129,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be clear signatrue', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
@@ -146,7 +146,7 @@ describe('VueSignaturePad Component', () => {
     const giveSignatureData =
       'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
 
-    const wrapper = shallow(VueSignaturePad, {
+    const wrapper = shallowMount(VueSignaturePad, {
       propsData: {
         giveSignatureData
       }
@@ -166,7 +166,7 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be return siganture pad empty status', () => {
-    const wrapper = shallow(VueSignaturePad);
+    const wrapper = shallowMount(VueSignaturePad);
 
     wrapper.setData({
       signaturePad: {
