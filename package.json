@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "@babel/plugin-external-helpers": "^7.0.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.0.0",
@@ -85,13 +86,12 @@
     "rimraf": "^2.6.2",
     "rollup": "^0.67.0",
     "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-buble": "^0.19.4",
+    "rollup-plugin-babel-minify": "^6.1.1",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-uglify": "^4.0.0",
-    "uglify-es": "^3.3.9",
+    "rollup-plugin-size-snapshot": "^0.7.0",
     "vue-template-compiler": "^2.5.17"
   },
   "engines": {

@@ -1,10 +1,10 @@
 import pkg from './package.json';
-import buble from 'rollup-plugin-buble';
-import { uglify } from 'rollup-plugin-uglify';
-import { minify } from 'uglify-es';
+import babel from 'rollup-plugin-babel';
+import minify from 'rollup-plugin-babel-minify';
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 const globals = {
   signature_pad: 'SignaturePad',
@@ -16,14 +16,12 @@ const config = {
   input: 'src/index.js',
   external: ['signature_pad', 'merge-images'],
   plugins: [
-    buble({
-      objectAssign: 'Object.assign'
+    babel({
+      exclude: 'node_modules/**',
+      plugins: ['@babel/plugin-external-helpers'],
+      externalHelpers: true
     }),
-    nodeResolve({
-      jsnext: true,
-      main: true,
-      browser: true
-    }),
+    nodeResolve({ jsnext: true }),
     commonjs()
   ],
   output: [
@@ -48,7 +46,8 @@ if (isProduction) {
       'process.env.NODE_ENV': JSON.stringify('production')
     })
   );
-  config.plugins.push(uglify({}, minify));
+  config.plugins.push(minify());
+  config.plugins.push(sizeSnapshot());
 }
 
 export default config;

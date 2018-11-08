@@ -7,10 +7,64 @@
   SignaturePad = SignaturePad && SignaturePad.hasOwnProperty('default') ? SignaturePad['default'] : SignaturePad;
   mergeImages = mergeImages && mergeImages.hasOwnProperty('default') ? mergeImages['default'] : mergeImages;
 
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true
+      });
+    } else {
+      obj[key] = value;
+    }
+
+    return obj;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      var ownKeys = Object.keys(source);
+
+      if (typeof Object.getOwnPropertySymbols === 'function') {
+        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+        }));
+      }
+
+      ownKeys.forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    }
+
+    return target;
+  }
+
+  function _toConsumableArray(arr) {
+    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+  }
+
+  function _arrayWithoutHoles(arr) {
+    if (Array.isArray(arr)) {
+      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+      return arr2;
+    }
+  }
+
+  function _iterableToArray(iter) {
+    if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+  }
+
+  function _nonIterableSpread() {
+    throw new TypeError("Invalid attempt to spread non-iterable instance");
+  }
+
   var SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
-
-  var checkSaveType = function (type) { return SAVE_TYPE.includes(type); };
-
+  var checkSaveType = function checkSaveType(type) {
+    return SAVE_TYPE.includes(type);
+  };
   var DEFAULT_OPTIONS = {
     dotSize: (0.5 + 2.5) / 2,
     minWidth: 0.5,
@@ -20,15 +74,14 @@
     backgroundColor: 'rgba(0,0,0,0)',
     penColor: 'black',
     velocityFilterWeight: 0.7,
-    onBegin: function () {},
-    onEnd: function () {}
+    onBegin: function onBegin() {},
+    onEnd: function onEnd() {}
   };
-
-  var convert2NonReactive = function (observerValue) { return JSON.parse(JSON.stringify(observerValue)); };
-
+  var convert2NonReactive = function convert2NonReactive(observerValue) {
+    return JSON.parse(JSON.stringify(observerValue));
+  };
   var TRANSPARENT_PNG = {
-    src:
-      'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+    src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
     x: 0,
     y: 0
   };
@@ -53,28 +106,30 @@
       },
       options: {
         type: Object,
-        default: function () { return ({}); }
+        default: function _default() {
+          return {};
+        }
       },
       images: {
         type: Array,
-        default: function () { return []; }
+        default: function _default() {
+          return [];
+        }
       }
     },
-    data: function () { return ({
-      signaturePad: {},
-      cacheImages: [],
-      signatureData: TRANSPARENT_PNG
-    }); },
+    data: function data() {
+      return {
+        signaturePad: {},
+        cacheImages: [],
+        signatureData: TRANSPARENT_PNG
+      };
+    },
     mounted: function mounted() {
-      var ref = this;
-      var options = ref.options;
+      var options = this.options;
       var canvas = this.$refs.signaturePadCanvas;
-      var signaturePad = new SignaturePad(canvas, Object.assign({}, DEFAULT_OPTIONS,
-        options));
+      var signaturePad = new SignaturePad(canvas, _objectSpread({}, DEFAULT_OPTIONS, options));
       this.signaturePad = signaturePad;
-
       window.addEventListener('resize', this.resizeCanvas.bind(this), false);
-
       this.resizeCanvas();
     },
     methods: {
@@ -90,28 +145,30 @@
         this.signaturePad.fromData(data);
       },
       saveSignature: function saveSignature() {
-        var ref = this;
-        var signaturePad = ref.signaturePad;
-        var saveType = ref.saveType;
-        var status = { isEmpty: false, data: undefined };
+        var signaturePad = this.signaturePad,
+            saveType = this.saveType;
+        var status = {
+          isEmpty: false,
+          data: undefined
+        };
 
         if (!checkSaveType(saveType)) {
           throw new Error('Image type is incorrect!');
         }
 
         if (signaturePad.isEmpty()) {
-          return Object.assign({}, status,
-            {isEmpty: true});
+          return _objectSpread({}, status, {
+            isEmpty: true
+          });
         } else {
           this.signatureData = signaturePad.toDataURL(saveType);
-
-          return Object.assign({}, status,
-            {data: this.signatureData});
+          return _objectSpread({}, status, {
+            data: this.signatureData
+          });
         }
       },
       undoSignature: function undoSignature() {
-        var ref = this;
-        var signaturePad = ref.signaturePad;
+        var signaturePad = this.signaturePad;
         var record = signaturePad.toData();
 
         if (record) {
@@ -120,19 +177,12 @@
       },
       mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
         this.signatureData = customSignature;
-
-        return mergeImages(this.images.concat( this.cacheImages,
-          [this.signatureData]
-        ));
+        return mergeImages(_toConsumableArray(this.images).concat(_toConsumableArray(this.cacheImages), [this.signatureData]));
       },
-      addImages: function addImages(images) {
-        if ( images === void 0 ) images = [];
-
-        this.cacheImages = this.cacheImages.concat( images);
-
-        return mergeImages(this.images.concat( this.cacheImages,
-          [this.signatureData]
-        ));
+      addImages: function addImages() {
+        var images = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        this.cacheImages = _toConsumableArray(this.cacheImages).concat(_toConsumableArray(images));
+        return mergeImages(_toConsumableArray(this.images).concat(_toConsumableArray(this.cacheImages), [this.signatureData]));
       },
       fromDataURL: function fromDataURL(data) {
         return this.signaturePad.fromDataURL(data);
@@ -151,7 +201,6 @@
       },
       clearCacheImages: function clearCacheImages() {
         this.cacheImages = [];
-
         return this.cacheImages;
       },
       clearSignature: function clearSignature() {
@@ -162,37 +211,31 @@
       propsImagesAndCustomImages: function propsImagesAndCustomImages() {
         var nonReactiveProrpImages = convert2NonReactive(this.images);
         var nonReactiveCachImages = convert2NonReactive(this.cacheImages);
-
-        return nonReactiveProrpImages.concat( nonReactiveCachImages);
+        return _toConsumableArray(nonReactiveProrpImages).concat(_toConsumableArray(nonReactiveCachImages));
       }
     },
     render: function render(createElement) {
-      var ref = this;
-      var width = ref.width;
-      var height = ref.height;
-      var customStyle = ref.customStyle;
-
-      return createElement(
-        'div',
-        {
-          style: Object.assign({}, {width: width,
-            height: height},
-            customStyle)
+      var width = this.width,
+          height = this.height,
+          customStyle = this.customStyle;
+      return createElement('div', {
+        style: _objectSpread({
+          width: width,
+          height: height
+        }, customStyle)
+      }, [createElement('canvas', {
+        style: {
+          width: '100%',
+          height: '100%'
         },
-        [
-          createElement('canvas', {
-            style: {
-              width: '100%',
-              height: '100%'
-            },
-            ref: 'signaturePadCanvas'
-          })
-        ]
-      );
+        ref: 'signaturePadCanvas'
+      })]);
     }
   };
 
-  VueSignaturePad.install = function (Vue) { return Vue.component(VueSignaturePad.name, VueSignaturePad); };
+  VueSignaturePad.install = function (Vue) {
+    return Vue.component(VueSignaturePad.name, VueSignaturePad);
+  };
 
   if (typeof window !== 'undefined' && window.Vue) {
     window.Vue.use(VueSignaturePad);
