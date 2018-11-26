@@ -115,7 +115,8 @@ var VueSignaturePad = {
     return {
       signaturePad: {},
       cacheImages: [],
-      signatureData: TRANSPARENT_PNG
+      signatureData: TRANSPARENT_PNG,
+      onResizeHandler: null
     };
   },
   mounted: function mounted() {
@@ -123,8 +124,14 @@ var VueSignaturePad = {
     var canvas = this.$refs.signaturePadCanvas;
     var signaturePad = new SignaturePad(canvas, _objectSpread({}, DEFAULT_OPTIONS, options));
     this.signaturePad = signaturePad;
-    window.addEventListener('resize', this.resizeCanvas.bind(this), false);
+    this.onResizeHandler = this.resizeCanvas.bind(this);
+    window.addEventListener('resize', this.onResizeHandler, false);
     this.resizeCanvas();
+  },
+  beforeDestroy: function beforeDestroy() {
+    if (this.onResizeHandler) {
+      window.removeEventListener('resize', this.onResizeHandler, false);
+    }
   },
   methods: {
     resizeCanvas: function resizeCanvas() {
