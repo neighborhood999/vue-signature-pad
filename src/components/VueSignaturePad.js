@@ -37,7 +37,8 @@ export default {
   data: () => ({
     signaturePad: {},
     cacheImages: [],
-    signatureData: TRANSPARENT_PNG
+    signatureData: TRANSPARENT_PNG,
+    onResizeHandler: null
   }),
   mounted() {
     const { options } = this;
@@ -48,9 +49,16 @@ export default {
     });
     this.signaturePad = signaturePad;
 
-    window.addEventListener('resize', this.resizeCanvas.bind(this), false);
+    this.onResizeHandler = this.resizeCanvas.bind(this);
+
+    window.addEventListener('resize', this.onResizeHandler, false);
 
     this.resizeCanvas();
+  },
+  beforeDestroy() {
+    if (this.onResizeHandler) {
+      window.removeEventListener('resize', this.onResizeHandler, false);
+    }
   },
   methods: {
     resizeCanvas() {
