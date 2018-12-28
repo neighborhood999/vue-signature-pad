@@ -1,8 +1,8 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('signature_pad'), require('merge-images')) :
   typeof define === 'function' && define.amd ? define(['signature_pad', 'merge-images'], factory) :
-  (global['vue-signature-pad'] = factory(global.SignaturePad,global.mergeImages));
-}(this, (function (SignaturePad,mergeImages) { 'use strict';
+  (global = global || self, global['vue-signature-pad'] = factory(global.SignaturePad, global.mergeImages));
+}(this, function (SignaturePad, mergeImages) { 'use strict';
 
   SignaturePad = SignaturePad && SignaturePad.hasOwnProperty('default') ? SignaturePad['default'] : SignaturePad;
   mergeImages = mergeImages && mergeImages.hasOwnProperty('default') ? mergeImages['default'] : mergeImages;
@@ -184,12 +184,12 @@
       },
       mergeImageAndSignature: function mergeImageAndSignature(customSignature) {
         this.signatureData = customSignature;
-        return mergeImages(_toConsumableArray(this.images).concat(_toConsumableArray(this.cacheImages), [this.signatureData]));
+        return mergeImages([].concat(_toConsumableArray(this.images), _toConsumableArray(this.cacheImages), [this.signatureData]));
       },
       addImages: function addImages() {
         var images = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-        this.cacheImages = _toConsumableArray(this.cacheImages).concat(_toConsumableArray(images));
-        return mergeImages(_toConsumableArray(this.images).concat(_toConsumableArray(this.cacheImages), [this.signatureData]));
+        this.cacheImages = [].concat(_toConsumableArray(this.cacheImages), _toConsumableArray(images));
+        return mergeImages([].concat(_toConsumableArray(this.images), _toConsumableArray(this.cacheImages), [this.signatureData]));
       },
       fromDataURL: function fromDataURL(data) {
         return this.signaturePad.fromDataURL(data);
@@ -218,7 +218,7 @@
       propsImagesAndCustomImages: function propsImagesAndCustomImages() {
         var nonReactiveProrpImages = convert2NonReactive(this.images);
         var nonReactiveCachImages = convert2NonReactive(this.cacheImages);
-        return _toConsumableArray(nonReactiveProrpImages).concat(_toConsumableArray(nonReactiveCachImages));
+        return [].concat(_toConsumableArray(nonReactiveProrpImages), _toConsumableArray(nonReactiveCachImages));
       }
     },
     render: function render(createElement) {
@@ -250,4 +250,4 @@
 
   return VueSignaturePad;
 
-})));
+}));
