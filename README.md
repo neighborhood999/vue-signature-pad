@@ -67,7 +67,7 @@ Vue.use(VueSignaturePad);
       width="500px"
       height="500px"
       ref="signaturePad"
-      options="{ onBegin, onEnd }"
+      :options="{ onBegin, onEnd }"
     />
   </div>
 </template>
