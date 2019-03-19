@@ -18,8 +18,7 @@ const config = {
   plugins: [
     babel({
       exclude: 'node_modules/**',
-      plugins: ['@babel/plugin-external-helpers'],
-      externalHelpers: true
+      runtimeHelpers: true
     }),
     nodeResolve({ jsnext: true }),
     commonjs()
