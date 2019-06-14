@@ -85,28 +85,28 @@ var VueSignaturePad = {
   props: {
     width: {
       type: String,
-      default: '100%'
+      "default": '100%'
     },
     height: {
       type: String,
-      default: '100%'
+      "default": '100%'
     },
     customStyle: {
       type: Object
     },
     saveType: {
       type: String,
-      default: 'image/png'
+      "default": 'image/png'
     },
     options: {
       type: Object,
-      default: function _default() {
+      "default": function _default() {
         return {};
       }
     },
     images: {
       type: Array,
-      default: function _default() {
+      "default": function _default() {
         return [];
       }
     }
