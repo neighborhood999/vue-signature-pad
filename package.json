@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "merge-images": "^1.1.0",
-    "signature_pad": "^2.3.2",
+    "signature_pad": "^3.0.0-beta.3",
     "vue": "^2.6.10"
   },
   "devDependencies": {
