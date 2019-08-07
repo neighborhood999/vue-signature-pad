@@ -102,6 +102,9 @@ export default {
         return signaturePad.fromData(record.slice(0, -1));
       }
     },
+    changePenColor(color) {
+      this.signaturePad.penColor = color;
+    },
     mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
 
