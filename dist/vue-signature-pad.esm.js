@@ -16,20 +16,35 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function _objectSpread(target) {
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
-    var ownKeys = Object.keys(source);
 
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
     }
-
-    ownKeys.forEach(function (key) {
-      _defineProperty(target, key, source[key]);
-    });
   }
 
   return target;
@@ -122,7 +137,7 @@ var VueSignaturePad = {
   mounted: function mounted() {
     var options = this.options;
     var canvas = this.$refs.signaturePadCanvas;
-    var signaturePad = new SignaturePad(canvas, _objectSpread({}, DEFAULT_OPTIONS, options));
+    var signaturePad = new SignaturePad(canvas, _objectSpread2({}, DEFAULT_OPTIONS, {}, options));
     this.signaturePad = signaturePad;
     this.onResizeHandler = this.resizeCanvas.bind(this);
     window.addEventListener('resize', this.onResizeHandler, false);
@@ -158,12 +173,12 @@ var VueSignaturePad = {
       }
 
       if (signaturePad.isEmpty()) {
-        return _objectSpread({}, status, {
+        return _objectSpread2({}, status, {
           isEmpty: true
         });
       } else {
         this.signatureData = signaturePad.toDataURL(saveType);
-        return _objectSpread({}, status, {
+        return _objectSpread2({}, status, {
           data: this.signatureData
         });
       }
@@ -220,7 +235,7 @@ var VueSignaturePad = {
         height = this.height,
         customStyle = this.customStyle;
     return createElement('div', {
-      style: _objectSpread({
+      style: _objectSpread2({
         width: width,
         height: height
       }, customStyle)

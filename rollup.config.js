@@ -20,7 +20,7 @@ const config = {
       exclude: 'node_modules/**',
       runtimeHelpers: true
     }),
-    nodeResolve({ jsnext: true }),
+    nodeResolve({ browser: true }),
     commonjs()
   ],
   output: [
