@@ -1,10 +1,9 @@
 # Vue Signature Pad
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/neighborhood999/vue-signature-pad.svg?style=flat-square)](https://greenkeeper.io/)
 [![Build Status](https://flat.badgen.net/travis/neighborhood999/vue-signature-pad)](https://travis-ci.org/neighborhood999/vue-signature-pad)
 [![npm](https://flat.badgen.net/npm/v/vue-signature-pad)](https://www.npmjs.com/package/vue-signature-pad)
 [![styled with prettier](https://flat.badgen.net/badge/style%20with/prettier/ff69b4)](https://github.com/prettier/prettier)
-![](https://flat.badgen.net/badge/module%20formats/cjs%2C%20esm%2C%20umd/green)
+![](https://flat.badgen.net/badge/module%20formats/cjs,%20esm,%20umd/green)
 
 > Vue component wrap for [signature pad](https://github.com/szimek/signature_pad)
 
