@@ -109,8 +109,8 @@ export default {
 | `getPropImagesAndCacheImages()`     | -                    | Get all the images information.                                             |
 | `clearCacheImages()`                | -                    | Clear cache images.                                                         |
 | `fromDataURL(data)`                 | `String`             | Draw image from data URL.                                                   |
-| `fromData(data)`                    | `String`             | Returns signature image as an array of point groups                         |
-| `toData()`                          | -                    | Draws signature image from an array of point groups                         |
+| `fromData(data)`                    | `String`             | Returns signature image as an array of point groups.                        |
+| `toData()`                          | -                    | Draws signature image from an array of point groups.                        |
 | `isEmpty()`                         | -                    | Return signature canvas have data.                                          |
 
 ## Credits
