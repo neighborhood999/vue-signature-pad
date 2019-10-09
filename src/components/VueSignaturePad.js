@@ -123,6 +123,12 @@ export default {
     fromDataURL(data) {
       return this.signaturePad.fromDataURL(data);
     },
+    fromData(data){
+      return this.signaturePad.fromData(data);
+    },
+    toData(){
+      return this.signaturePad.toData();
+    },
     lockSignaturePad() {
       return this.signaturePad.off();
     },
