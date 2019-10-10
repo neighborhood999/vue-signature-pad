@@ -1,6 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
 import VueSignaturePad from '../VueSignaturePad';
-import { signatureMockData, mockEncodeDataURL } from './mock';
+import {
+  signatureMockData,
+  mockEncodeDataURL,
+  signatureMockDataPoints
+} from './mock';
 
 describe('VueSignaturePad Component', () => {
   it('should be receive default props', () => {
@@ -61,18 +65,18 @@ describe('VueSignaturePad Component', () => {
 
     wrapper.setData({
       signaturePad: {
-        _data: signatureMockData
+        _data: signatureMockDataPoints
       }
     });
 
-    expect(wrapper.vm.toData()).toEqual(signatureMockData);
+    expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
   });
 
   it('should be set signature from data array', () => {
     const wrapper = shallowMount(VueSignaturePad);
 
-    expect(wrapper.vm.fromData(signatureMockData)).toEqual(undefined);
-    expect(wrapper.vm.toData()).toEqual(signatureMockData);
+    expect(wrapper.vm.fromData(signatureMockDataPoints)).toEqual(undefined);
+    expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
   });
 
   it('should be throw incorrect data array', () => {
