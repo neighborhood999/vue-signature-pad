@@ -1,6 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
 import VueSignaturePad from '../VueSignaturePad';
-import { signatureMockData, mockEncodeDataURL } from './mock';
+import {
+  signatureMockData,
+  mockEncodeDataURL,
+  signatureMockDataPoints
+} from './mock';
 
 describe('VueSignaturePad Component', () => {
   it('should be receive default props', () => {
@@ -54,6 +58,31 @@ describe('VueSignaturePad Component', () => {
       isEmpty: false,
       data: mockEncodeDataURL
     });
+  });
+
+  it('should be return signature data array', () => {
+    const wrapper = shallowMount(VueSignaturePad);
+
+    wrapper.setData({
+      signaturePad: {
+        _data: signatureMockDataPoints
+      }
+    });
+
+    expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
+  });
+
+  it('should be set signature from data array', () => {
+    const wrapper = shallowMount(VueSignaturePad);
+
+    expect(wrapper.vm.fromData(signatureMockDataPoints)).toEqual(undefined);
+    expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
+  });
+
+  it('should be throw incorrect data array', () => {
+    const wrapper = shallowMount(VueSignaturePad);
+
+    expect(() => addOptionsWrapper.vm.fromData('Not an array')).toThrow();
   });
 
   it('should be undo draw action', () => {
