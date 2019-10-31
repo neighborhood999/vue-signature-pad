@@ -97,21 +97,22 @@ export default {
 
 ## Methods
 
-| Name                                | Argument Type        | Description                                                                 |
-| :---------------------------------- | :------------------- | --------------------------------------------------------------------------- |
-| `saveSignature()`                   | -                    | Will return target canvas **status** and **data**.                          |
-| `undoSignature()`                   | -                    | Undo                                                                        |
-| `clearSignature()`                  | -                    | Clear                                                                       |
-| `mergeImageAndSignature(signature)` | `Object` or `String` | Provide `images` as props and will merge with signature.                    |
-| `addImages(images)`                 | `Array`              | Provide the images merge with signature. Reference above `images` property. |
-| `lockSignaturePad()`                | -                    | Lock target signature pad.                                                  |
-| `openSignaturePad()`                | -                    | Open target signature pad.                                                  |
-| `getPropImagesAndCacheImages()`     | -                    | Get all the images information.                                             |
-| `clearCacheImages()`                | -                    | Clear cache images.                                                         |
-| `fromDataURL(data)`                 | `String`             | Draw image from data URL.                                                   |
-| `fromData(data)`                    | `String`             | Returns signature image as an array of point groups.                        |
-| `toData()`                          | -                    | Draws signature image from an array of point groups.                        |
-| `isEmpty()`                         | -                    | Return signature canvas have data.                                          |
+| Name                                   | Argument Type                | Description                                                                 |
+| :------------------------------------- | :--------------------------- | --------------------------------------------------------------------------- |
+| `saveSignature()`                      | -                            | Will return target canvas **status** and **data**.                          |
+| `undoSignature()`                      | -                            | Undo                                                                        |
+| `clearSignature()`                     | -                            | Clear                                                                       |
+| `mergeImageAndSignature(signature)`    | `Object` or `String`         | Provide `images` as props and will merge with signature.                    |
+| `addImages(images)`                    | `Array`                      | Provide the images merge with signature. Reference above `images` property. |
+| `lockSignaturePad()`                   | -                            | Lock target signature pad.                                                  |
+| `openSignaturePad()`                   | -                            | Open target signature pad.                                                  |
+| `getPropImagesAndCacheImages()`        | -                            | Get all the images information.                                             |
+| `clearCacheImages()`                   | -                            | Clear cache images.                                                         |
+| `fromDataURL(data, options, callback)` | `(String, Object, callback)` | Draw image from data URL.                                                   |
+| `fromData(data)`                       | `String`                     | Returns signature image as an array of point groups.                        |
+| `toData()`                             | -                            | Draws signature image from an array of point groups.                        |
+| `isEmpty()`                            | -                            | Return signature canvas have data.                                          |
+
 
 ## Credits
 
