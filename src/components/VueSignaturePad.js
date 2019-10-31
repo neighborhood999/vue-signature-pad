@@ -65,9 +65,11 @@ export default {
       const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
+
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext('2d').scale(ratio, ratio);
+
       this.signaturePad.clear();
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
@@ -120,8 +122,8 @@ export default {
         this.signatureData
       ]);
     },
-    fromDataURL(data) {
-      return this.signaturePad.fromDataURL(data);
+    fromDataURL(data, options = {}, callback) {
+      return this.signaturePad.fromDataURL(data, options, callback);
     },
     fromData(data) {
       return this.signaturePad.fromData(data);
