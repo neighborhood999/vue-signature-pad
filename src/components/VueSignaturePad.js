@@ -59,6 +59,11 @@ export default {
 
     this.resizeCanvas();
   },
+  updated() {
+    this.$nextTick(function() {
+      this.signaturePad.penColor = this.color;
+    });
+  },
   beforeDestroy() {
     if (this.onResizeHandler) {
       window.removeEventListener("resize", this.onResizeHandler, false);
@@ -156,9 +161,7 @@ export default {
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
-  updated() {
-    this.signaturePad.penColor = this.props.color;
-  },
+
   render(createElement) {
     const { width, height, customStyle } = this;
 
