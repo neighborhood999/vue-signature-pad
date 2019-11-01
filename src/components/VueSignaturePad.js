@@ -1,29 +1,33 @@
-import SignaturePad from 'signature_pad';
-import mergeImages from 'merge-images';
+import SignaturePad from "signature_pad";
+import mergeImages from "merge-images";
 import {
   DEFAULT_OPTIONS,
   TRANSPARENT_PNG,
   checkSaveType,
   convert2NonReactive
-} from '../utils/index';
+} from "../utils/index";
 
 export default {
-  name: 'VueSignaturePad',
+  name: "VueSignaturePad",
   props: {
+    color: {
+      type: String,
+      default: "black"
+    },
     width: {
       type: String,
-      default: '100%'
+      default: "100%"
     },
     height: {
       type: String,
-      default: '100%'
+      default: "100%"
     },
     customStyle: {
       type: Object
     },
     saveType: {
       type: String,
-      default: 'image/png'
+      default: "image/png"
     },
     options: {
       type: Object,
@@ -51,13 +55,13 @@ export default {
 
     this.onResizeHandler = this.resizeCanvas.bind(this);
 
-    window.addEventListener('resize', this.onResizeHandler, false);
+    window.addEventListener("resize", this.onResizeHandler, false);
 
     this.resizeCanvas();
   },
   beforeDestroy() {
     if (this.onResizeHandler) {
-      window.removeEventListener('resize', this.onResizeHandler, false);
+      window.removeEventListener("resize", this.onResizeHandler, false);
     }
   },
   methods: {
@@ -67,7 +71,7 @@ export default {
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
-      canvas.getContext('2d').scale(ratio, ratio);
+      canvas.getContext("2d").scale(ratio, ratio);
       this.signaturePad.clear();
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
@@ -77,7 +81,7 @@ export default {
       const status = { isEmpty: false, data: undefined };
 
       if (!checkSaveType(saveType)) {
-        throw new Error('Image type is incorrect!');
+        throw new Error("Image type is incorrect!");
       }
 
       if (signaturePad.isEmpty()) {
@@ -101,9 +105,6 @@ export default {
       if (record) {
         return signaturePad.fromData(record.slice(0, -1));
       }
-    },
-    changePenColor(color) {
-      this.signaturePad.penColor = color;
     },
     mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
@@ -155,11 +156,14 @@ export default {
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
+  updated() {
+    this.signaturePad.penColor = this.props.color;
+  },
   render(createElement) {
     const { width, height, customStyle } = this;
 
     return createElement(
-      'div',
+      "div",
       {
         style: {
           width,
@@ -168,12 +172,12 @@ export default {
         }
       },
       [
-        createElement('canvas', {
+        createElement("canvas", {
           style: {
-            width: '100%',
-            height: '100%'
+            width: "100%",
+            height: "100%"
           },
-          ref: 'signaturePadCanvas'
+          ref: "signaturePadCanvas"
         })
       ]
     );
