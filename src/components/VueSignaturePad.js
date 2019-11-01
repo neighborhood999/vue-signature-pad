@@ -60,6 +60,7 @@ export default {
     this.resizeCanvas();
   },
   updated() {
+    console.log("Updated color:", this.color);
     this.$nextTick(function() {
       this.signaturePad.penColor = this.color;
     });
