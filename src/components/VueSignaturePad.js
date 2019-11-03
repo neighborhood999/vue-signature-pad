@@ -10,10 +10,6 @@ import {
 export default {
   name: "VueSignaturePad",
   props: {
-    color: {
-      type: String,
-      default: "black"
-    },
     width: {
       type: String,
       default: "100%"
@@ -59,12 +55,6 @@ export default {
 
     this.resizeCanvas();
   },
-  updated() {
-    console.log("Updated color:", this.color);
-    this.$nextTick(function() {
-      this.signaturePad.penColor = this.color;
-    });
-  },
   beforeDestroy() {
     if (this.onResizeHandler) {
       window.removeEventListener("resize", this.onResizeHandler, false);
@@ -75,9 +65,11 @@ export default {
       const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
       const ratio = Math.max(window.devicePixelRatio || 1, 1);
+
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
       canvas.getContext("2d").scale(ratio, ratio);
+
       this.signaturePad.clear();
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
@@ -130,8 +122,14 @@ export default {
         this.signatureData
       ]);
     },
-    fromDataURL(data) {
-      return this.signaturePad.fromDataURL(data);
+    fromDataURL(data, options = {}, callback) {
+      return this.signaturePad.fromDataURL(data, options, callback);
+    },
+    fromData(data) {
+      return this.signaturePad.fromData(data);
+    },
+    toData() {
+      return this.signaturePad.toData();
     },
     lockSignaturePad() {
       return this.signaturePad.off();
@@ -162,7 +160,15 @@ export default {
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
-
+  watch: {
+    options: function(nextOptions) {
+      Object.keys(nextOptions).forEach(option => {
+        if (this.signaturePad[option]) {
+          this.signaturePad[option] = nextOptions[option];
+        }
+      });
+    }
+  },
   render(createElement) {
     const { width, height, customStyle } = this;
 
