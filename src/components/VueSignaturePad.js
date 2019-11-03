@@ -160,6 +160,15 @@ export default {
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
+  watch: {
+    options: function(nextOptions) {
+      Object.keys(nextOptions).forEach(option => {
+        if (this.signaturePad[option]) {
+          this.signaturePad[option] = nextOptions[option];
+        }
+      });
+    }
+  },
   render(createElement) {
     const { width, height, customStyle } = this;
 
