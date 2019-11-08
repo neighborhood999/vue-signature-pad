@@ -19,7 +19,9 @@
     "size:cjs": "echo CommonJs gzipped size: $(gzip-size $npm_package_main)",
     "size:unpkg": "echo UMD gzipped size: $(gzip-size $npm_package_unpkg)",
     "size:esm": "echo ESModule gzipped size: $(gzip-size $npm_package_module)",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "prepare" : "npm run build:prod",
+    "prepublishOnly" : "npm test && npm run lint"
   },
   "jest": {
     "moduleFileExtensions": [
