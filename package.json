@@ -1,7 +1,7 @@
 {
   "name": "vue-signature-pad",
   "description": "SignaturePad component for Vue.js",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "main": "dist/vue-signature-pad.common.js",
   "unpkg": "dist/vue-signature-pad.js",
   "module": "dist/vue-signature-pad.esm.js",
@@ -20,8 +20,8 @@
     "size:unpkg": "echo UMD gzipped size: $(gzip-size $npm_package_unpkg)",
     "size:esm": "echo ESModule gzipped size: $(gzip-size $npm_package_module)",
     "clean": "rimraf dist",
-    "prepare" : "npm run build:prod",
-    "prepublishOnly" : "npm test && npm run lint"
+    "prepare": "npm run build:prod",
+    "prepublishOnly": "npm test && npm run lint"
   },
   "jest": {
     "moduleFileExtensions": [
