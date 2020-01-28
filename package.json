@@ -76,7 +76,7 @@
     "canvas": "1.6.13",
     "cross-env": "6.0.3",
     "eslint": "6.8.0",
-    "eslint-config-prettier": "6.9.0",
+    "eslint-config-prettier": "6.10.0",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-vue": "6.1.2",
     "gzip-size-cli": "3.0.0",
