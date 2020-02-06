@@ -1,9 +1,9 @@
 import pkg from './package.json';
-import babel from 'rollup-plugin-babel';
+import bubble from '@rollup/plugin-buble';
 import minify from 'rollup-plugin-babel-minify';
-import replace from 'rollup-plugin-replace';
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
 const globals = {
@@ -16,12 +16,14 @@ const config = {
   input: 'src/index.js',
   external: ['signature_pad', 'merge-images'],
   plugins: [
-    babel({
+    bubble({
       exclude: 'node_modules/**',
-      runtimeHelpers: true
+      objectAssign: true
     }),
     nodeResolve({ browser: true }),
-    commonjs()
+    commonjs({
+      include: 'node_modules/**'
+    })
   ],
   output: [
     { file: pkg.main, format: 'cjs', globals },
