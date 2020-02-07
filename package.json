@@ -97,7 +97,7 @@
     "prettier": "1.19.1",
     "rimraf": "3.0.1",
     "rollup": "1.31.0",
-    "rollup-plugin-babel-minify": "9.1.0",
+    "rollup-plugin-babel-minify": "9.1.1",
     "rollup-plugin-size-snapshot": "0.10.0",
     "vue-template-compiler": "2.6.11"
   },
