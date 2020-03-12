@@ -3,6 +3,7 @@ import mergeImages from 'merge-images';
 import {
   DEFAULT_OPTIONS,
   TRANSPARENT_PNG,
+  IMAGE_TYPES,
   checkSaveType,
   convert2NonReactive
 } from '../utils/index';
@@ -20,10 +21,6 @@ export default {
     },
     customStyle: {
       type: Object
-    },
-    saveType: {
-      type: String,
-      default: 'image/png'
     },
     options: {
       type: Object,
@@ -74,12 +71,15 @@ export default {
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
     },
-    saveSignature() {
-      const { signaturePad, saveType } = this;
+    saveSignature(type = IMAGE_TYPES[0], encoderOptions) {
+      const { signaturePad } = this;
       const status = { isEmpty: false, data: undefined };
 
-      if (!checkSaveType(saveType)) {
-        throw new Error('Image type is incorrect!');
+      if (!checkSaveType(type)) {
+        const imageTypesString = IMAGE_TYPES.join(', ');
+        throw new Error(
+          `The Image type is incorrect! We are support ${imageTypesString} types.`
+        );
       }
 
       if (signaturePad.isEmpty()) {
@@ -88,7 +88,7 @@ export default {
           isEmpty: true
         };
       } else {
-        this.signatureData = signaturePad.toDataURL(saveType);
+        this.signatureData = signaturePad.toDataURL(type, encoderOptions);
 
         return {
           ...status,
