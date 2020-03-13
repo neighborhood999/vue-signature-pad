@@ -1,6 +1,6 @@
-const SAVE_TYPE = ['image/png', 'image/jpeg', 'image/svg+xml'];
+export const IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/svg+xml'];
 
-export const checkSaveType = type => SAVE_TYPE.includes(type);
+export const checkSaveType = type => IMAGE_TYPES.includes(type);
 
 export const DEFAULT_OPTIONS = {
   dotSize: (0.5 + 2.5) / 2,

@@ -14,7 +14,7 @@
 ## Installation
 
 ```sh
-yarn add vue-signature-pad
+$ yarn add vue-signature-pad
 ```
 
 ## Usage
@@ -29,11 +29,7 @@ Vue.use(VueSignaturePad);
 ```vue
 <template>
   <div id="app">
-    <VueSignaturePad
-      width="500px"
-      height="500px"
-      ref="signaturePad"
-    />
+    <VueSignaturePad width="500px" height="500px" ref="signaturePad" />
     <div>
       <button @click="save">Save</button>
       <button @click="undo">Undo</button>
@@ -41,19 +37,19 @@ Vue.use(VueSignaturePad);
   </div>
 </template>
 <script>
-  export default {
-    name: 'MySignaturePad',
-    methods: {
-      undo() {
-        this.$refs.signaturePad.undoSignature();
-      },
-      save() {
-        const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
-        console.log(isEmpty);
-        console.log(data);
-      }
+export default {
+  name: 'MySignaturePad',
+  methods: {
+    undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty);
+      console.log(data);
     }
   }
+};
 </script>
 ```
 
@@ -80,26 +76,25 @@ export default {
       console.log('=== End ===');
     }
   }
-}
+};
 </script>
 ```
 
 ## Props
 
-| Name        | Type   | Default                                                                                                 | Description                                                     | Example                                                                                                                         |
-| :---------- | :----- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| width       | String | `100%`                                                                                                  | Set the `div` width.                                            | -                                                                                                                               |
-| height      | String | `100%`                                                                                                  | Set the `div` height.                                           | -                                                                                                                               |
-| saveType    | String | `image/png`                                                                                             | Image type, support `image/png`, `image/jpeg`, `image/svg+xml`. | -                                                                                                                               |
-| options     | Object | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13) | Set the signature pad options.                                  | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13)                         |
-| images      | Array  | `[]`                                                                                                    | Merge signature with the provide images.                        | `['A.png', 'B.png', 'C.png']` or `[{ src: 'A.png', x: 0, y: 0 }, { src: 'B.png', x: 0, y: 10 }, { src: 'C.png', x: 0, y: 20 }]` |
-| customStyle | Object | `{}`                                                                                                    | Custom `div` style.                                             | `{ border: black 3px solid }`                                                                                                   |
+| Name        | Type   | Default                                                                                                 | Description                              | Example                                                                                                                         |
+| :---------- | :----- | :------------------------------------------------------------------------------------------------------ | :--------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| width       | String | `100%`                                                                                                  | Set the `div` width.                     | -                                                                                                                               |
+| height      | String | `100%`                                                                                                  | Set the `div` height.                    | -                                                                                                                               |
+| options     | Object | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13) | Set the signature pad options.           | [Reference](https://github.com/neighborhood999/vue-signature-pad/blob/master/src/utils/index.js#L5-L13)                         |
+| images      | Array  | `[]`                                                                                                    | Merge signature with the provide images. | `['A.png', 'B.png', 'C.png']` or `[{ src: 'A.png', x: 0, y: 0 }, { src: 'B.png', x: 0, y: 10 }, { src: 'C.png', x: 0, y: 20 }]` |
+| customStyle | Object | `{}`                                                                                                    | Custom `div` style.                      | `{ border: black 3px solid }`                                                                                                   |
 
 ## Methods
 
 | Name                                   | Argument Type                | Description                                                                 |
 | :------------------------------------- | :--------------------------- | --------------------------------------------------------------------------- |
-| `saveSignature()`                      | -                            | Will return target canvas **status** and **data**.                          |
+| `saveSignature(type, encoderOptions)`  | `(String, Number)`           | Will return target canvas **status** and **data**.                          |
 | `undoSignature()`                      | -                            | Undo                                                                        |
 | `clearSignature()`                     | -                            | Clear                                                                       |
 | `mergeImageAndSignature(signature)`    | `Object` or `String`         | Provide `images` as props and will merge with signature.                    |
@@ -108,11 +103,10 @@ export default {
 | `openSignaturePad()`                   | -                            | Open target signature pad.                                                  |
 | `getPropImagesAndCacheImages()`        | -                            | Get all the images information.                                             |
 | `clearCacheImages()`                   | -                            | Clear cache images.                                                         |
-| `fromDataURL(data, options, callback)` | `(String, Object, callback)` | Draw image from data URL.                                                   |
+| `fromDataURL(data, options, callback)` | `(String, Object, Callback)` | Draw image from data URL.                                                   |
 | `fromData(data)`                       | `String`                     | Returns signature image as an array of point groups.                        |
 | `toData()`                             | -                            | Draws signature image from an array of point groups.                        |
 | `isEmpty()`                            | -                            | Return signature canvas have data.                                          |
-
 
 ## Credits
 

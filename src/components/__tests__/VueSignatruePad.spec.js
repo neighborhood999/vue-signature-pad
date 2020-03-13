@@ -21,13 +21,9 @@ describe('VueSignaturePad Component', () => {
   });
 
   it('should be throw incorrect image error message', () => {
-    const addOptionsWrapper = shallowMount(VueSignaturePad, {
-      propsData: {
-        saveType: 'text/html'
-      }
-    });
+    const addOptionsWrapper = shallowMount(VueSignaturePad);
 
-    expect(() => addOptionsWrapper.vm.saveSignature()).toThrow();
+    expect(() => addOptionsWrapper.vm.saveSignature('text/html')).toThrow();
   });
 
   it('should be return empty status and undefined data', () => {
