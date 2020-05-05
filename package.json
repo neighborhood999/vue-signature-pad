@@ -9,6 +9,7 @@
   "files": [
     "dist"
   ],
+  "types": "index.d.ts",
   "scripts": {
     "test": "jest",
     "build:dev": "npm run clean && cross-env NODE_ENV=development rollup -c",
@@ -69,6 +70,7 @@
     "url": "https://github.com/neighborhood999/vue-signature-pad/issues"
   },
   "dependencies": {
+    "@types/signature_pad": "^2.3.0",
     "merge-images": "^1.1.0",
     "signature_pad": "^3.0.0-beta.3",
     "vue": "^2.6.11"

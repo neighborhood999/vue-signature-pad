@@ -20,7 +20,8 @@ export default {
       default: '100%'
     },
     customStyle: {
-      type: Object
+      type: Object,
+      default: () => ({})
     },
     options: {
       type: Object,
@@ -37,6 +38,23 @@ export default {
     signatureData: TRANSPARENT_PNG,
     onResizeHandler: null
   }),
+  computed: {
+    propsImagesAndCustomImages() {
+      const nonReactiveProrpImages = convert2NonReactive(this.images);
+      const nonReactiveCachImages = convert2NonReactive(this.cacheImages);
+
+      return [...nonReactiveProrpImages, ...nonReactiveCachImages];
+    }
+  },
+  watch: {
+    options: function(nextOptions) {
+      Object.keys(nextOptions).forEach(option => {
+        if (this.signaturePad[option]) {
+          this.signaturePad[option] = nextOptions[option];
+        }
+      });
+    }
+  },
   mounted() {
     const { options } = this;
     const canvas = this.$refs.signaturePadCanvas;
@@ -150,23 +168,6 @@ export default {
     },
     clearSignature() {
       return this.signaturePad.clear();
-    }
-  },
-  computed: {
-    propsImagesAndCustomImages() {
-      const nonReactiveProrpImages = convert2NonReactive(this.images);
-      const nonReactiveCachImages = convert2NonReactive(this.cacheImages);
-
-      return [...nonReactiveProrpImages, ...nonReactiveCachImages];
-    }
-  },
-  watch: {
-    options: function(nextOptions) {
-      Object.keys(nextOptions).forEach(option => {
-        if (this.signaturePad[option]) {
-          this.signaturePad[option] = nextOptions[option];
-        }
-      });
     }
   },
   render(createElement) {

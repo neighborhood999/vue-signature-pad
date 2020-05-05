@@ -1189,6 +1189,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/signature_pad@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@types/signature_pad/-/signature_pad-2.3.0.tgz#0040aa8eb82063dbb50653047eb5cb7227b7a103"
+  integrity sha512-3g03oFi6Xy7oA1foIP80X9Np+psq1CDGsGIRIEgvEuFzJZsS5oRGGqgl9K5ONlfLlnYU+Ei8vMszWKlIlMA/cA==
+
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-1.0.1.tgz#0a851d3bd96498fa25c33ab7278ed3bd65f06c3e"
