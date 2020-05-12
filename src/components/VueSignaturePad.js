@@ -20,7 +20,8 @@ export default {
       default: '100%'
     },
     customStyle: {
-      type: Object
+      type: Object,
+      default: () => ({})
     },
     options: {
       type: Object,
