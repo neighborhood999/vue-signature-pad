@@ -2,6 +2,7 @@ import bubble from '@rollup/plugin-buble';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
@@ -18,10 +19,14 @@ const baseConfig = {
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    resolve({ browser: true }),
-    commonjs({
-      include: 'node_modules/**'
+    vue({
+      css: true,
+      template: {
+        isProduction: true
+      }
     }),
+    resolve({ browser: true }),
+    commonjs(),
     bubble({
       exclude: 'node_modules/**',
       objectAssign: true
@@ -43,9 +48,19 @@ const buildFormats = [
   {
     ...baseConfig,
     external,
+    plugins: [
+      ...baseConfig.plugins,
+      vue({
+        ...baseConfig.plugins.vue,
+        template: {
+          isProduction: true,
+          optimizeSSR: true
+        }
+      })
+    ],
     output: {
       compact: true,
-      file: 'dist/vue-signature-pad.cjs.js',
+      file: 'dist/vue-signature-pad.ssr.js',
       format: 'cjs',
       name: 'VueSignaturePad',
       exports: 'named',

@@ -1,3 +1,4 @@
+<script>
 import SignaturePad from 'signature_pad';
 import mergeImages from 'merge-images';
 import {
@@ -47,7 +48,7 @@ export default {
     }
   },
   watch: {
-    options: function(nextOptions) {
+    options: function (nextOptions) {
       Object.keys(nextOptions).forEach(option => {
         if (this.signaturePad[option]) {
           this.signaturePad[option] = nextOptions[option];
@@ -194,3 +195,4 @@ export default {
     );
   }
 };
+</script>

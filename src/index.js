@@ -1,4 +1,4 @@
-import VueSignaturePad from './components/VueSignaturePad';
+import VueSignaturePad from './components/VueSignaturePad.vue';
 
 function install(Vue) {
   if (install.installed) {

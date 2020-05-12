@@ -14,7 +14,9 @@ module.exports = {
       'error',
       {
         bracketSpacing: true,
-        singleQuote: true
+        singleQuote: true,
+        trailingComma: 'none',
+        arrowParens: 'avoid'
       }
     ]
   }
