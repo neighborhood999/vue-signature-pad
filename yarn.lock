@@ -6618,7 +6618,7 @@ rollup-plugin-size-snapshot@0.11.0:
     terser "^4.6.3"
     webpack "^4.41.5"
 
-rollup-plugin-terser@^5.3.0:
+rollup-plugin-terser@5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-5.3.0.tgz#9c0dd33d5771df9630cd027d6a2559187f65885e"
   integrity sha512-XGMJihTIO3eIBsVGq7jiNYOdDMb3pVxuzY0uhOE/FM4x/u9nQgr3+McsjzqBn3QfHIpNSZmFnpoKAwHBEcsT7g==
@@ -6629,7 +6629,7 @@ rollup-plugin-terser@^5.3.0:
     serialize-javascript "^2.1.2"
     terser "^4.6.2"
 
-rollup-plugin-vue@^5.1.7:
+rollup-plugin-vue@5.1.7:
   version "5.1.7"
   resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-5.1.7.tgz#1093c105de1edffa20030cc87abc805b0af88285"
   integrity sha512-6/in3vg23ZcGxn9AoxUoFINOC+gR4ufL0UQlHtOaDRD4k6ebqnHM5JMROu3RQROYZ8OyaxlRoUf4n2HlgaQb5w==
@@ -6651,10 +6651,10 @@ rollup-pluginutils@^2.4.1, rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@2.9.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.9.1.tgz#3038ba1378e2ee614b5c9385b8379d7bec4c69ea"
-  integrity sha512-kEZn76R0j+WD4AActu5Np4RShNlewTtJhdUaWNtHwHnAA8AOapyXgH6O7NL2RkcQLHnl49oz1xW1VrDcu5yP+Q==
+rollup@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.10.0.tgz#73332273fa177cd85c1042659dee6f103761be0d"
+  integrity sha512-7BmpEfUN9P6esJzWIn3DmR//90mW6YwYB1t3y48LpF8ITpYtL8s1kEirMKqUu44dVH/6a/rs0EuwYVL3FuRDoA==
   optionalDependencies:
     fsevents "~2.1.2"
 
