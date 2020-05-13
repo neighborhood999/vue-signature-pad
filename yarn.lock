@@ -5938,10 +5938,10 @@ rollup-plugin-size-snapshot@0.11.0:
     terser "^4.6.3"
     webpack "^4.41.5"
 
-rollup@2.0.6:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.0.6.tgz#865d6bb15a28cff3429ea1dc57236013661cb9de"
-  integrity sha512-P42IlI6a/bxh52ed8hEXXe44LcHfep2f26OZybMJPN1TTQftibvQEl3CWeOmJrzqGbFxOA000QXDWO9WJaOQpA==
+rollup@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.10.0.tgz#73332273fa177cd85c1042659dee6f103761be0d"
+  integrity sha512-7BmpEfUN9P6esJzWIn3DmR//90mW6YwYB1t3y48LpF8ITpYtL8s1kEirMKqUu44dVH/6a/rs0EuwYVL3FuRDoA==
   optionalDependencies:
     fsevents "~2.1.2"
 
