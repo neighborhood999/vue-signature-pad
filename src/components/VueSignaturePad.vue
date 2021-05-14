@@ -211,7 +211,7 @@ export default {
         createElement('canvas', {
           style: {
             width: '100%',
-            height: '100%'
+            height: 'auto'
           },
           ref: 'signaturePadCanvas'
         })
