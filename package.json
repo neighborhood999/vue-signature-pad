@@ -68,7 +68,7 @@
     "url": "https://github.com/neighborhood999/vue-signature-pad/issues"
   },
   "dependencies": {
-    "merge-images": "^1.1.0",
+    "merge-images": "^2.0.0",
     "signature_pad": "^3.0.0-beta.3",
     "vue": "^2.6.11"
   },

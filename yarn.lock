@@ -5210,10 +5210,10 @@ memorystream@^0.3.1:
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
   integrity sha1-htcJCzDORV1j+64S3aUaR93K+bI=
 
-merge-images@^1.1.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/merge-images/-/merge-images-1.2.0.tgz#740117bd655b310fe2046f7c980798ded8d6d4f2"
-  integrity sha512-hEGvgnTdXr08uzGvEArxRsKpy7WmozM73YaSi4s5IYF4LxrhANpqfHaz9CgBZ5+0+s2NsjPnPdStz3aCc0Yulw==
+merge-images@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/merge-images/-/merge-images-2.0.0.tgz#4d68d6d90ad8c33a91aced0b5d8660983bf4db3a"
+  integrity sha512-bpI4j54n/Zl6ZTgxaR3xWou/lqI53RAAt8peXijW37BKqoON83LQ7XCZqtFiwzBfEXIws1isYyR06584yffAyA==
 
 merge-source-map@^1.1.0:
   version "1.1.0"
