@@ -33,12 +33,14 @@ export default {
       default: () => []
     }
   },
+
   data: () => ({
     signaturePad: {},
     cacheImages: [],
     signatureData: TRANSPARENT_PNG,
     onResizeHandler: null
   }),
+
   computed: {
     propsImagesAndCustomImages() {
       const nonReactiveProrpImages = convert2NonReactive(this.images);
@@ -47,6 +49,7 @@ export default {
       return [...nonReactiveProrpImages, ...nonReactiveCachImages];
     }
   },
+
   watch: {
     options: function (nextOptions) {
       Object.keys(nextOptions).forEach(option => {
@@ -56,6 +59,7 @@ export default {
       });
     }
   },
+
   mounted() {
     const { options } = this;
     const canvas = this.$refs.signaturePadCanvas;
@@ -65,17 +69,23 @@ export default {
     });
     this.signaturePad = signaturePad;
 
+    if (options.resizeHandler) {
+      this.resizeCanvas = options.resizeHandler.bind(this);
+    }
+
     this.onResizeHandler = this.resizeCanvas.bind(this);
 
     window.addEventListener('resize', this.onResizeHandler, false);
 
     this.resizeCanvas();
   },
+
   beforeDestroy() {
     if (this.onResizeHandler) {
       window.removeEventListener('resize', this.onResizeHandler, false);
     }
   },
+
   methods: {
     resizeCanvas() {
       const canvas = this.$refs.signaturePadCanvas;
@@ -90,6 +100,7 @@ export default {
       this.signatureData = TRANSPARENT_PNG;
       this.signaturePad.fromData(data);
     },
+
     saveSignature(type = IMAGE_TYPES[0], encoderOptions) {
       const { signaturePad } = this;
       const status = { isEmpty: false, data: undefined };
@@ -115,6 +126,7 @@ export default {
         };
       }
     },
+
     undoSignature() {
       const { signaturePad } = this;
       const record = signaturePad.toData();
@@ -123,6 +135,7 @@ export default {
         return signaturePad.fromData(record.slice(0, -1));
       }
     },
+
     mergeImageAndSignature(customSignature) {
       this.signatureData = customSignature;
 
@@ -132,6 +145,7 @@ export default {
         this.signatureData
       ]);
     },
+
     addImages(images = []) {
       this.cacheImages = [...this.cacheImages, ...images];
 
@@ -141,36 +155,46 @@ export default {
         this.signatureData
       ]);
     },
+
     fromDataURL(data, options = {}, callback) {
       return this.signaturePad.fromDataURL(data, options, callback);
     },
+
     fromData(data) {
       return this.signaturePad.fromData(data);
     },
+
     toData() {
       return this.signaturePad.toData();
     },
+
     lockSignaturePad() {
       return this.signaturePad.off();
     },
+
     openSignaturePad() {
       return this.signaturePad.on();
     },
+
     isEmpty() {
       return this.signaturePad.isEmpty();
     },
+
     getPropImagesAndCacheImages() {
       return this.propsImagesAndCustomImages;
     },
+
     clearCacheImages() {
       this.cacheImages = [];
 
       return this.cacheImages;
     },
+
     clearSignature() {
       return this.signaturePad.clear();
     }
   },
+
   render(createElement) {
     const { width, height, customStyle } = this;
 
@@ -187,7 +211,7 @@ export default {
         createElement('canvas', {
           style: {
             width: '100%',
-            height: '100%'
+            height: 'auto'
           },
           ref: 'signaturePadCanvas'
         })
