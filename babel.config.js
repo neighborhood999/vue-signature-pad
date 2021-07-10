@@ -1,17 +1,12 @@
+const devPresets = ['@vue/babel-preset-app'];
+const buildPresets = [
+  [
+    '@babel/preset-env',
+    // Config for @babel/preset-env
+    {}
+  ]
+];
+
 module.exports = {
-  presets: [['@babel/preset-env', { modules: false }]],
-  env: {
-    test: {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            targets: {
-              node: 'current'
-            }
-          }
-        ]
-      ]
-    }
-  }
+  presets: process.env.NODE_ENV === 'development' ? devPresets : buildPresets
 };

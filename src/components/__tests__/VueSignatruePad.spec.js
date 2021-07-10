@@ -56,18 +56,20 @@ describe('VueSignaturePad Component', () => {
     });
   });
 
-  // FIXME: `toData` is not a function
-  // it('should be return signature data array', () => {
-  //   const wrapper = shallowMount(VueSignaturePad);
+  it('should be return signature data array', () => {
+    const wrapper = shallowMount(VueSignaturePad);
 
-  //   wrapper.setData({
-  //     signaturePad: {
-  //       _data: signatureMockDataPoints
-  //     }
-  //   });
+    wrapper.setData({
+      signaturePad: {
+        _data: signatureMockData
+      },
+      toData() {
+        return signatureMockData;
+      }
+    });
 
-  //   expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
-  // });
+    expect(wrapper.vm.toData()).toEqual(signatureMockData);
+  });
 
   it('should be set signature from data array', () => {
     const wrapper = shallowMount(VueSignaturePad);
@@ -79,7 +81,7 @@ describe('VueSignaturePad Component', () => {
   it('should be throw incorrect data array', () => {
     const wrapper = shallowMount(VueSignaturePad);
 
-    expect(() => addOptionsWrapper.vm.fromData('Not an array')).toThrow();
+    expect(() => wrapper.vm.fromData('Not an array')).toThrow();
   });
 
   it('should be undo draw action', () => {

@@ -1,5 +1,5 @@
 <script>
-import { h } from 'vue';
+import { h, defineComponent } from 'vue';
 import SignaturePad from 'signature_pad';
 import mergeImages from 'merge-images';
 import {
@@ -10,7 +10,7 @@ import {
   convert2NonReactive
 } from '../utils/index';
 
-export default {
+export default defineComponent({
   name: 'VueSignaturePad',
   props: {
     width: {
@@ -219,5 +219,5 @@ export default {
       ]
     );
   }
-};
+});
 </script>

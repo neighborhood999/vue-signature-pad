@@ -14,6 +14,9 @@
     "serve": "vue-cli-service serve dev/serve.js",
     "test": "jest",
     "build": "npm run clean && rollup -c",
+    "build:ssr": "rollup --config build/rollup.config.js --format cjs",
+    "build:es": "rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "rollup --config build/rollup.config.js --format iife",
     "lint": "eslint --ext .vue,.js src",
     "lint-fix": "eslint --ext .vue,.js src --fix",
     "size": "run-s size:*",
@@ -72,7 +75,7 @@
   "dependencies": {
     "merge-images": "^1.1.0",
     "signature_pad": "^3.0.0-beta.3",
-    "vue": "^3.0.5"
+    "vue": "^3.1.4"
   },
   "devDependencies": {
     "@babel/core": "7.14.6",
@@ -96,10 +99,13 @@
     "jest": "26.6.3",
     "jest-canvas-mock": "2.3.1",
     "lint-staged": "10.2.2",
+    "minimist": "^1.2.5",
     "npm-run-all": "4.1.5",
+    "postcss": "^8.3.5",
     "prettier": "2.3.2",
     "rimraf": "3.0.2",
     "rollup": "2.53.0",
+    "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-size-snapshot": "0.12.0",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-vue": "6.0.0",
