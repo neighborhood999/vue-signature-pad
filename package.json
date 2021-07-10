@@ -7,7 +7,8 @@
   "module": "dist/vue-signature-pad.esm.js",
   "browser": "dist/vue-signature-pad.esm.js",
   "files": [
-    "dist"
+    "dist",
+    "src/**/*.vue"
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
