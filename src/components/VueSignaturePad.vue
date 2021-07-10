@@ -1,4 +1,5 @@
 <script>
+import { h } from 'vue';
 import SignaturePad from 'signature_pad';
 import mergeImages from 'merge-images';
 import {
@@ -195,10 +196,10 @@ export default {
     }
   },
 
-  render(createElement) {
+  render() {
     const { width, height, customStyle } = this;
 
-    return createElement(
+    return h(
       'div',
       {
         style: {
@@ -208,10 +209,10 @@ export default {
         }
       },
       [
-        createElement('canvas', {
+        h('canvas', {
           style: {
-            width: '100%',
-            height: 'auto'
+            width: width,
+            height: height
           },
           ref: 'signaturePadCanvas'
         })
