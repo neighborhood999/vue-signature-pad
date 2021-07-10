@@ -1,4 +1,4 @@
-import bubble from '@rollup/plugin-buble';
+import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
@@ -14,9 +14,10 @@ const globals = {
 const external = ['vue', 'signature_pad', 'merge-images'];
 
 const baseConfig = {
-  input: 'src/index.js',
+  input: 'src/entry.js',
   plugins: [
     replace({
+      preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     vue({
@@ -27,9 +28,10 @@ const baseConfig = {
     }),
     resolve({ browser: true }),
     commonjs(),
-    bubble({
+    babel({
       exclude: 'node_modules/**',
-      objectAssign: true
+      extensions: ['.js', '.vue'],
+      babelHelpers: 'bundled'
     }),
     sizeSnapshot()
   ]
@@ -63,7 +65,7 @@ const buildFormats = [
       file: 'dist/vue-signature-pad.ssr.js',
       format: 'cjs',
       name: 'VueSignaturePad',
-      exports: 'named',
+      exports: 'auto',
       globals
     }
   },
