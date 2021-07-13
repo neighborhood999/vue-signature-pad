@@ -24,7 +24,8 @@
     "size:unpkg": "echo UMD gzipped size: $(gzip-size $npm_package_unpkg)",
     "size:esm": "echo ESModule gzipped size: $(gzip-size $npm_package_module)",
     "clean": "rimraf dist",
-    "prepublishOnly": "npm test && npm run lint"
+    "prepublishOnly": "npm test && npm run lint",
+    "prepare": "husky install"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -46,13 +47,6 @@
     "setupFiles": [
       "jest-canvas-mock"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run lint && npm run test",
-      "pre-publish": "npm run lint && npm run build:prod"
-    }
   },
   "lint-staged": {
     "*.{js,vue}": [
@@ -95,10 +89,10 @@
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-vue": "7.13.0",
-    "husky": "4.2.5",
+    "husky": "7.0.1",
     "jest": "26.6.3",
     "jest-canvas-mock": "2.3.1",
-    "lint-staged": "10.2.2",
+    "lint-staged": "11.0.0",
     "minimist": "^1.2.5",
     "npm-run-all": "4.1.5",
     "postcss": "^8.3.5",
