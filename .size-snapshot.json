@@ -27,5 +27,29 @@
     "bundled": 3977,
     "minified": 1440,
     "gzipped": 682
+  },
+  "vue-signature-pad.esm.js": {
+    "bundled": 5590,
+    "minified": 3513,
+    "gzipped": 1449,
+    "treeshaked": {
+      "rollup": {
+        "code": 3031,
+        "import_statements": 102
+      },
+      "webpack": {
+        "code": 4120
+      }
+    }
+  },
+  "vue-signature-pad.ssr.js": {
+    "bundled": 11158,
+    "minified": 7289,
+    "gzipped": 2528
+  },
+  "vue-signature-pad.min.js": {
+    "bundled": 6092,
+    "minified": 6087,
+    "gzipped": 2283
   }
 }

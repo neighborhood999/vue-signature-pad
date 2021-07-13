@@ -1,73 +1,115 @@
-import bubble from '@rollup/plugin-buble';
+import fs from 'fs';
+import babel from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import vue from 'rollup-plugin-vue';
+import postCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
-import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import minimist from 'minimist';
+
+const esbrowserslist = fs
+  .readFileSync('./.browserslistrc')
+  .toString()
+  .split('\n')
+  .filter(entry => entry && entry.substring(0, 2) !== 'ie');
+
+const argv = minimist(process.argv.slice(2));
+
+const external = ['vue', 'merge-images', 'signature_pad'];
 const globals = {
   vue: 'Vue',
   signature_pad: 'SignaturePad',
   'merge-images': 'mergeImages'
 };
-const external = ['vue', 'signature_pad', 'merge-images'];
 
 const baseConfig = {
-  input: 'src/index.js',
-  plugins: [
-    replace({
+  input: 'src/entry.js',
+  plugins: {
+    replace: {
+      preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    vue({
-      css: true,
-      template: {
-        isProduction: true
-      }
-    }),
-    resolve({ browser: true }),
-    commonjs(),
-    bubble({
+    },
+    postVue: [
+      resolve({
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
+      }),
+      postCSS({
+        modules: {
+          generateScopedName: '[local]___[hash:base64:5]'
+        },
+        include: /&module=.*\.css$/
+      }),
+      postCSS({ include: /(?<!&module=.*)\.css$/ }),
+      commonjs()
+    ],
+    babel: {
       exclude: 'node_modules/**',
-      objectAssign: true
-    }),
-    sizeSnapshot()
-  ]
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      babelHelpers: 'bundled'
+    }
+  }
 };
 
-const buildFormats = [
-  {
+const buildFormats = [];
+if (!argv.format || argv.format === 'es') {
+  const esConfig = {
     ...baseConfig,
+    input: 'src/entry.esm.js',
     external,
     output: {
       file: 'dist/vue-signature-pad.esm.js',
       format: 'esm',
       exports: 'named'
-    }
-  },
-  {
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel({
+        ...baseConfig.plugins.babel,
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: esbrowserslist
+            }
+          ]
+        ]
+      }),
+      sizeSnapshot()
+    ]
+  };
+  buildFormats.push(esConfig);
+}
+
+if (!argv.format || argv.format === 'cjs') {
+  const umdConfig = {
     ...baseConfig,
     external,
-    plugins: [
-      ...baseConfig.plugins,
-      vue({
-        ...baseConfig.plugins.vue,
-        template: {
-          isProduction: true,
-          optimizeSSR: true
-        }
-      })
-    ],
     output: {
       compact: true,
       file: 'dist/vue-signature-pad.ssr.js',
       format: 'cjs',
       name: 'VueSignaturePad',
-      exports: 'named',
+      exports: 'auto',
       globals
-    }
-  },
-  {
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel(baseConfig.plugins.babel),
+      sizeSnapshot()
+    ]
+  };
+  buildFormats.push(umdConfig);
+}
+
+if (!argv.format || argv.format === 'iife') {
+  const unpkgConfig = {
     ...baseConfig,
     external,
     output: {
@@ -75,18 +117,23 @@ const buildFormats = [
       file: 'dist/vue-signature-pad.min.js',
       format: 'iife',
       name: 'VueSignaturePad',
-      exports: 'named',
+      exports: 'auto',
       globals
     },
     plugins: [
-      ...baseConfig.plugins,
+      replace(baseConfig.plugins.replace),
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel(baseConfig.plugins.babel),
       terser({
         output: {
           ecma: 5
         }
-      })
+      }),
+      sizeSnapshot()
     ]
-  }
-];
+  };
+  buildFormats.push(unpkgConfig);
+}
 
 export default buildFormats;

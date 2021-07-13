@@ -19,8 +19,7 @@ export const convert2NonReactive = observerValue =>
   JSON.parse(JSON.stringify(observerValue));
 
 export const TRANSPARENT_PNG = {
-  src:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
+  src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=',
   x: 0,
   y: 0
 };
