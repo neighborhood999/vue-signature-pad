@@ -61,11 +61,14 @@ describe('VueSignaturePad Component', () => {
 
     wrapper.setData({
       signaturePad: {
-        _data: signatureMockDataPoints
+        _data: signatureMockData
+      },
+      toData() {
+        return signatureMockData;
       }
     });
 
-    expect(wrapper.vm.toData()).toEqual(signatureMockDataPoints);
+    expect(wrapper.vm.toData()).toEqual(signatureMockData);
   });
 
   it('should be set signature from data array', () => {
@@ -78,7 +81,7 @@ describe('VueSignaturePad Component', () => {
   it('should be throw incorrect data array', () => {
     const wrapper = shallowMount(VueSignaturePad);
 
-    expect(() => addOptionsWrapper.vm.fromData('Not an array')).toThrow();
+    expect(() => wrapper.vm.fromData('Not an array')).toThrow();
   });
 
   it('should be undo draw action', () => {
