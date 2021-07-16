@@ -13,6 +13,8 @@
 
 ## Installation
 
+*If you are still using Vue 2, please install **2.0.4** version, for Vue 3 you can install the **latest publish version**.*
+
 ```sh
 $ yarn add vue-signature-pad
 ```

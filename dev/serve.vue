@@ -29,8 +29,12 @@ export default defineComponent({
       height="500px"
     />
     <div id="buttons">
-      <button @click="save">Save</button>
-      <button @click="undo">Undo</button>
+      <button @click="save">
+        Save
+      </button>
+      <button @click="undo">
+        Undo
+      </button>
     </div>
   </div>
 </template>
