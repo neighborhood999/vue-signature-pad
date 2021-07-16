@@ -8,16 +8,5 @@ module.exports = {
     es6: true
   },
   extends: ['prettier', 'plugin:vue/recommended'],
-  plugins: ['prettier', 'vue'],
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        bracketSpacing: true,
-        singleQuote: true,
-        trailingComma: 'none',
-        arrowParens: 'avoid'
-      }
-    ]
-  }
+  plugins: ['prettier', 'vue']
 };
