@@ -7,13 +7,12 @@
 
 > Vue component wrap for [signature pad](https://github.com/szimek/signature_pad)
 
+> Note: If you are still using Vue 2, please install **2.0.4** version, for Vue 3 you can install the **latest publish version**.
 ## Demo
 
 [![Edit Vue Signature Pad Demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/n5qjp3oqv4)
 
 ## Installation
-
-*If you are still using Vue 2, please install **2.0.4** version, for Vue 3 you can install the **latest publish version**.*
 
 ```sh
 $ yarn add vue-signature-pad
