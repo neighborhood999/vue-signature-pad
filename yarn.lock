@@ -1440,10 +1440,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@rollup/plugin-alias@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.3.tgz#86787ab317cdc31e205c2ae380f66673054988bc"
-  integrity sha512-Z0rIFDnNQTVd9pveh+Jnfy3odYRu/UXY4yA9TN8+jHUqpMHEKSwhtTbG439obYOd6YkMnD6EjdW7dW3pe97JeQ==
+"@rollup/plugin-alias@3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.4.tgz#47774f4ff0eab5937f7acb392cf2b89921f03b7d"
+  integrity sha512-9YN5h0bWlYFV0zpXwwAWGPUWh/A+kkoCqwrMb43LnuGfhnQqOjsGR+5uh4LGpAZbBBj8qR1Hno6CZadZs7hyCQ==
   dependencies:
     slash "^3.0.0"
 
