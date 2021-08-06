@@ -81,7 +81,7 @@ export default defineComponent({
     this.resizeCanvas();
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.onResizeHandler) {
       window.removeEventListener('resize', this.onResizeHandler, false);
     }
