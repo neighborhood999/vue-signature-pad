@@ -29,27 +29,27 @@
     "gzipped": 682
   },
   "vue-signature-pad.esm.js": {
-    "bundled": 8989,
-    "minified": 4499,
-    "gzipped": 1843,
+    "bundled": 9109,
+    "minified": 4584,
+    "gzipped": 1869,
     "treeshaked": {
       "rollup": {
         "code": 43,
         "import_statements": 43
       },
       "webpack": {
-        "code": 1060
+        "code": 2270
       }
     }
   },
   "vue-signature-pad.ssr.js": {
-    "bundled": 14516,
-    "minified": 8327,
-    "gzipped": 2898
+    "bundled": 14676,
+    "minified": 8426,
+    "gzipped": 2922
   },
   "vue-signature-pad.min.js": {
-    "bundled": 6873,
-    "minified": 6853,
-    "gzipped": 2581
+    "bundled": 6972,
+    "minified": 6952,
+    "gzipped": 2605
   }
 }
