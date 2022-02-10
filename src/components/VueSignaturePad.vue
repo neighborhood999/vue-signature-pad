@@ -32,6 +32,10 @@ export default defineComponent({
     images: {
       type: Array,
       default: () => []
+    },
+    scaleToDevicePixelRatio: {
+      type: Boolean,
+      default: () => true
     }
   },
 
@@ -91,7 +95,9 @@ export default defineComponent({
     resizeCanvas() {
       const canvas = this.$refs.signaturePadCanvas;
       const data = this.signaturePad.toData();
-      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      const ratio = this.scaleToDevicePixelRatio
+        ? Math.max(window.devicePixelRatio || 1, 1)
+        : 1;
 
       canvas.width = canvas.offsetWidth * ratio;
       canvas.height = canvas.offsetHeight * ratio;
