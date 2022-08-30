@@ -71,7 +71,7 @@
   "dependencies": {
     "merge-images": "^1.1.0",
     "signature_pad": "^3.0.0-beta.3",
-    "vue": "^2.6.11"
+    "vue": "2.7"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
@@ -88,7 +88,7 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-prettier": "3.1.2",
-    "eslint-plugin-vue": "6.1.2",
+    "eslint-plugin-vue": "^9.4.0",
     "husky": "4.2.1",
     "jest": "25.1.0",
     "jest-canvas-mock": "2.2.0",
@@ -99,7 +99,7 @@
     "rollup": "1.31.0",
     "rollup-plugin-babel-minify": "9.1.1",
     "rollup-plugin-size-snapshot": "0.11.0",
-    "vue-template-compiler": "2.6.11"
+    "vue-template-compiler": "^2.7.10"
   },
   "engines": {
     "node": ">=8"
