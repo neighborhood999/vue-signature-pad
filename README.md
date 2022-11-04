@@ -18,7 +18,7 @@
 $ yarn add vue-signature-pad
 ```
 
-## Usage
+## Usage for Vue 2
 
 ```js
 import Vue from 'vue';
@@ -53,6 +53,80 @@ export default {
 };
 </script>
 ```
+
+## Usage for Vue3
+
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import { VueSignaturePad } from 'vue-signature-pad';
+
+const app = createApp(App)
+app.component("VueSignaturePad", VueSignaturePad);
+app.mount('#app')
+```
+```vue
+<template>
+  <div id="app">
+    <VueSignaturePad ref="signaturePad" />
+    <div>
+      <button @click="save">Save</button>
+      <button @click="undo">Undo</button>
+    </div>
+  </div>
+</template>
+<script>
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: 'MySignaturePad',
+  methods: {
+    undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty);
+      console.log(data);
+    }
+  }
+});
+</script>
+```
+
+### In Single Component
+
+```vue
+<template>
+  <div id="app">
+    <VueSignaturePad width="500px" height="500px" ref="signaturePad" />
+    <div>
+      <button @click="save">Save</button>
+      <button @click="undo">Undo</button>
+    </div>
+  </div>
+</template>
+<script>
+import { defineComponent } from "vue";
+import { VueSignaturePad } from 'vue-signature-pad';
+
+export default defineComponent({
+  name: 'MySignaturePad',
+  components: { VueSignaturePad },
+  methods: {
+    undo() {
+      this.$refs.signaturePad.undoSignature();
+    },
+    save() {
+      const { isEmpty, data } = this.$refs.signaturePad.saveSignature();
+      console.log(isEmpty);
+      console.log(data);
+    }
+  }
+});
+</script>
+```
+
 
 [vue-signature-pad](https://github.com/neighborhood999/vue-signature-pad) use [szimek/signature_pad](https://github.com/szimek/signature_pad) default setting as `options`, feel free custom you wanted options. In [v1.1](https://github.com/neighborhood999/vue-signature-pad/releases/tag/1.1.0) add `onBegin` and `onEnd` event callback:
 
