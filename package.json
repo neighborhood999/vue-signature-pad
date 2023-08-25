@@ -10,6 +10,7 @@
     "dist",
     "src/**/*.vue"
   ],
+  "type": "module",
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
     "test": "jest",
