@@ -1,8 +1,0 @@
-.DS_Store
-
-coverage
-node_modules
-dist
-
-npm-debug.log
-yarn-error.log
