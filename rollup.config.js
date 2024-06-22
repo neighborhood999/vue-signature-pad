@@ -7,7 +7,6 @@ import vue from 'rollup-plugin-vue';
 import postCSS from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 
-import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import minimist from 'minimist';
 
 const esbrowserslist = fs
@@ -78,8 +77,7 @@ if (!argv.format || argv.format === 'es') {
             }
           ]
         ]
-      }),
-      sizeSnapshot()
+      })
     ]
   };
   buildFormats.push(esConfig);
@@ -101,8 +99,7 @@ if (!argv.format || argv.format === 'cjs') {
       replace(baseConfig.plugins.replace),
       vue(baseConfig.plugins.vue),
       ...baseConfig.plugins.postVue,
-      babel(baseConfig.plugins.babel),
-      sizeSnapshot()
+      babel(baseConfig.plugins.babel)
     ]
   };
   buildFormats.push(umdConfig);
@@ -129,8 +126,7 @@ if (!argv.format || argv.format === 'iife') {
         output: {
           ecma: 5
         }
-      }),
-      sizeSnapshot()
+      })
     ]
   };
   buildFormats.push(unpkgConfig);
