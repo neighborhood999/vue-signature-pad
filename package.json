@@ -71,7 +71,7 @@
     "signature_pad": "^3.0.0-beta.3"
   },
   "devDependencies": {
-    "@babel/core": "7.15.0",
+    "@babel/core": "7.29.6",
     "@babel/preset-env": "7.15.0",
     "@rollup/plugin-alias": "3.1.5",
     "@rollup/plugin-babel": "5.3.0",
